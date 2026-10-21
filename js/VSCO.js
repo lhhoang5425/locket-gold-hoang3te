@@ -1,3 +1,4 @@
+// VSCO VIP by @lhhoang5425 | Telegram: @hoang3te
 let obj = {
     "request_date_ms": 1105233005000,
     "request_date": "2005-01-09T01:10:05Z",

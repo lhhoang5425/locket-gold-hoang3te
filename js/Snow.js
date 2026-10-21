@@ -1,3 +1,4 @@
+// Snow VIP - Hỗ trợ Telegram: @hoang3te (https://t.me/hoang3te)
 var hoang3te = JSON.parse($response.body);
 const ua = $request.headers["User-Agent"] || $request.headers["user-agent"];
 const times = Date.now();

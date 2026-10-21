@@ -1,3 +1,4 @@
+// Meitu VIP - Hỗ trợ Telegram: @hoang3te
 /*
 Chức năng：Mở khóa VIP cao cấp Meitu Xiuxiu
 Kịch bản：R·E

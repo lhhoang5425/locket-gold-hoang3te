@@ -47,3 +47,10 @@ https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/nocket-ga
 ```text
 https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/LocketGold.mobileconfig
 ```
+
+---
+
+## 3. Kênh Hỗ Trợ & Liên Hệ
+
+- **Telegram:** [@hoang3te](https://t.me/hoang3te)
+- **GitHub:** [lhhoang5425/nocket-gay-hoang3te](https://github.com/lhhoang5425/nocket-gay-hoang3te)

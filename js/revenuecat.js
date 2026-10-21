@@ -1,7 +1,7 @@
 /***********************************
 
 > ScriptName        𝐑𝐞𝐯𝐞𝐧𝐮𝐞𝐂𝐚𝐭
-> Author            @lhhoang5425
+> Author            @lhhoang5425 | Telegram: @hoang3te (https://t.me/hoang3te)
 > TgChannel         https://github.com/lhhoang5425
 > ScriptURL         https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/js/revenuecat.js
 

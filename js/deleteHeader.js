@@ -1,3 +1,4 @@
+// deleteHeader by @lhhoang5425 | Telegram: @hoang3te
 /***********************************************
 > deleteHeader by hoang3te
 ***********************************************/	

@@ -1,3 +1,4 @@
+// Lightroom Premium by @lhhoang5425 | Telegram: @hoang3te
 body = $response.body.replace(/while.{7}\n/, "");
 let obj = JSON.parse(body);
 obj.entitlement.status="subscriber";
