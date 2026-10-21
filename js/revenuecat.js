@@ -2,16 +2,12 @@
 
 > ScriptName        𝐑𝐞𝐯𝐞𝐧𝐮𝐞𝐂𝐚𝐭
 > Author            @lhhoang5425 | Telegram: @hoang3te (https://t.me/hoang3te)
-> TgChannel         https://github.com/lhhoang5425
-> ScriptURL         https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/js/revenuecat.js
-
+> TgChannel         https:> ScriptURL         https:
 
 [rewrite_local]
 
 # ～ RevenueCat@lhhoang5425
-^https:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/[^/]+$) url script-response-body https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/js/revenuecat.js
-^https:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers) url script-request-header https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/js/deleteHeader.js
-
+^https:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/[^/]+$) url script-response-body https:^https:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers) url script-request-header https:
 [mitm]
 
 hostname=api.revenuecat.com

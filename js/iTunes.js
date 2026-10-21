@@ -3,8 +3,7 @@
 Tên dự án: Bộ sưu tập mở khóa phim bộ iTunes
 Ngày cập nhật: 14/06/2026
 Tác giả kịch bản: @lhhoang5425 | Telegram: @hoang3te
-Kênh Telegram: https://github.com/lhhoang5425
-Lưu ý: ⚠️Chỉ để tham khảo, 🈲nghiêm cấm sao chép và bán!
+Kênh Telegram: https:Lưu ý: ⚠️Chỉ để tham khảo, 🈲nghiêm cấm sao chép và bán!
 Hướng dẫn sử dụng: Nếu kịch bản không hoạt động, vui lòng kiểm tra xung đột kịch bản trước.
 Lưu ý đặc biệt: Kịch bản này có thể gây ra lỗi đăng nhập App Store.
 Giải pháp: Chọn một trong các phương pháp sau: [MITM][Script][Công cụ Proxy]
@@ -12,8 +11,7 @@ Giải pháp: Chọn một trong các phương pháp sau: [MITM][Script][Công c
 **************************************
 
 [rewrite_local]
-^https?:\/\/buy\.itunes\.apple\.com\/verifyReceipt$ url script-response-body https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/js/iTunes.js
-
+^https?:\/\/buy\.itunes\.apple\.com\/verifyReceipt$ url script-response-body https:
 [mitm]
 hostname = buy.itunes.apple.com
 

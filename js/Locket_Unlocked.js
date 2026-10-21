@@ -69,8 +69,7 @@ if (ua.includes("Locket")) {
         android_subscribe_gold_button_enabled: "false",
         profile_badge_visible: "true",
         lunar_new_year_app_icon_enabled: "true",
-        settings_instagram_url: "https://github.com/lhhoang5425",
-        settings_tiktok_url: "https://www.tiktok.com/@hoang3te"
+        settings_instagram_url: "https:        settings_tiktok_url: "https://www.tiktok.com/@hoang3te"
     });
 
     // ============================================================
