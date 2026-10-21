@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zekas VIP Hub — Shadowrocket & Locket Gold</title>
-    <meta name="description" content="Hệ thống cấu hình Shadowrocket tối ưu, chặn quảng cáo và bẻ khóa Locket Gold. Thiết kế tinh giản, tiếp cận theo triết lý Lovable Design.">
+    <meta name="description" content="Cài đặt nhanh Shadowrocket Cấu hình, Mô-đun và DNS chống thu hồi cho Locket Gold. Thiết kế tối giản theo Lovable Design.">
     <meta name="theme-color" content="#f7f4ed">
     <link rel="icon" href="https://module-ios.netlify.app/assets/img/shadowrocket.webp" type="image/webp">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -14,10 +14,8 @@
             --bg-cream: #f7f4ed;
             --charcoal: #1c1c1c;
             --charcoal-83: rgba(28, 28, 28, 0.83);
-            --charcoal-82: rgba(28, 28, 28, 0.82);
             --charcoal-40: rgba(28, 28, 28, 0.40);
             --charcoal-04: rgba(28, 28, 28, 0.04);
-            --charcoal-03: rgba(28, 28, 28, 0.03);
             --muted-gray: #5f5f5d;
             --border-cream: #eceae4;
             --off-white: #fcfbf8;
@@ -38,22 +36,17 @@
             letter-spacing: -0.04em;
         }
 
-        .heading-hero {
-            letter-spacing: -0.045em;
-            line-height: 1.08;
-        }
-
         /* Lovable Card */
         .lovable-card {
             background-color: var(--bg-cream);
             border: 1px solid var(--border-cream);
             border-radius: 12px;
-            transition: border-color 0.2s ease, background-color 0.2s ease;
+            transition: border-color 0.15s ease, background-color 0.15s ease;
         }
 
         .lovable-card:hover {
-            border-color: rgba(28, 28, 28, 0.2);
-            background-color: rgba(255, 255, 255, 0.4);
+            border-color: rgba(28, 28, 28, 0.25);
+            background-color: rgba(255, 255, 255, 0.5);
         }
 
         /* Signature Lovable Dark Button with Inset Shadow */
@@ -61,7 +54,7 @@
             background-color: var(--charcoal);
             color: var(--off-white);
             border-radius: 6px;
-            padding: 9px 18px;
+            padding: 10px 18px;
             font-size: 14px;
             font-weight: 500;
             box-shadow: rgba(255, 255, 255, 0.2) 0px 0.5px 0px 0px inset,
@@ -86,7 +79,7 @@
             color: var(--charcoal);
             border: 1px solid var(--charcoal-40);
             border-radius: 6px;
-            padding: 8px 16px;
+            padding: 9px 16px;
             font-size: 13px;
             font-weight: 400;
             transition: background-color 0.15s ease, opacity 0.15s ease;
@@ -103,15 +96,6 @@
 
         .btn-ghost:active {
             opacity: 0.8;
-        }
-
-        /* Pills */
-        .pill-tag {
-            border-radius: 9999px;
-            padding: 3px 10px;
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.02em;
         }
 
         /* Atmospheric subtle wash */
@@ -142,50 +126,37 @@
         </div>
     </div>
 
-    <main class="relative z-10 max-w-[560px] mx-auto w-full my-auto">
+    <main class="relative z-10 max-w-[540px] mx-auto w-full my-auto">
         
-        <!-- Header / Hero Section -->
-        <header class="text-center mb-10 pt-2">
-            <div class="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full border border-[#eceae4] bg-[#f7f4ed] text-[12px] text-[#5f5f5d]">
+        <!-- Header -->
+        <header class="text-center mb-8 pt-2">
+            <div class="inline-flex items-center gap-2 mb-3 px-3 py-1 rounded-full border border-[#eceae4] bg-[#f7f4ed] text-[12px] text-[#5f5f5d]">
                 <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                <span>Zekas Dev • Phiên bản 2026 VIP</span>
+                <span>Zekas Dev</span>
             </div>
             
-            <h1 class="text-3xl sm:text-4xl heading-hero mb-3 text-[#1c1c1c]">
-                Cấu hình Shadowrocket
+            <h1 class="text-3xl sm:text-4xl text-[#1c1c1c]">
+                Cài đặt Shadowrocket
             </h1>
-            <p class="text-[#5f5f5d] text-[15px] max-w-[420px] mx-auto leading-relaxed">
-                Tối ưu kết nối, loại bỏ quảng cáo YouTube và mở khóa Locket Gold vĩnh viễn với trải nghiệm 1 chạm.
-            </p>
         </header>
 
-        <!-- Steps Section (Conf ĐƯỢC ĐƯA LÊN ĐẦU TIÊN) -->
-        <div class="space-y-4">
+        <!-- 3 Action Cards (Clean, chỉ ghi tên chính và đuôi file trong nút) -->
+        <div class="space-y-3.5">
 
-            <!-- BƯỚC 1: CẤU HÌNH TRỌN GÓI (.CONF) - ĐƯỢC ĐƯA LÊN TRƯỚC -->
-            <section class="lovable-card p-5 relative">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full bg-[#1c1c1c] text-[#fcfbf8] text-xs font-semibold flex items-center justify-center shrink-0">
-                            1
-                        </div>
-                        <div>
-                            <div class="flex items-center gap-2">
-                                <h2 class="text-[17px] text-[#1c1c1c]">Cấu hình Trọn Gói (.conf)</h2>
-                                <span class="pill-tag bg-[#1c1c1c] text-[#fcfbf8]">Ưu tiên</span>
-                            </div>
-                            <p class="text-[13px] text-[#5f5f5d] mt-0.5">
-                                Bản đầy đủ từ A-Z: Tối ưu DNS 1.1.1.1, chặn ads YouTube và mở khóa Locket Gold 2099.
-                            </p>
-                        </div>
+            <!-- 1. CẤU HÌNH -->
+            <section class="lovable-card p-4 sm:p-5">
+                <div class="flex items-center gap-3 mb-3.5">
+                    <div class="w-7 h-7 rounded-full bg-[#1c1c1c] text-[#fcfbf8] text-xs font-semibold flex items-center justify-center shrink-0">
+                        1
                     </div>
+                    <h2 class="text-[17px] text-[#1c1c1c]">Cấu hình</h2>
                 </div>
 
-                <div class="pt-3 border-t border-[#eceae4] flex flex-col sm:flex-row gap-2.5">
+                <div class="flex flex-col sm:flex-row gap-2">
                     <a id="btn-conf-open" href="shadowrocket://config/add/https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/nocket-gay.conf"
                        class="btn-dark flex-1">
                         <i class="fa-solid fa-download text-xs opacity-90"></i>
-                        <span>Mở & Tải Cấu hình (.conf)</span>
+                        <span>Mở & Cài Cấu hình (.conf)</span>
                     </a>
                     <button onclick="copyLink('https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/nocket-gay.conf')"
                             class="btn-ghost">
@@ -195,30 +166,20 @@
                 </div>
             </section>
 
-            <!-- BƯỚC 2: MÔ-ĐUN BỔ TRỢ (.SGMODULE) -->
-            <section class="lovable-card p-5">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full border border-[#eceae4] text-[#1c1c1c] text-xs font-semibold flex items-center justify-center shrink-0">
-                            2
-                        </div>
-                        <div>
-                            <div class="flex items-center gap-2">
-                                <h2 class="text-[17px] text-[#1c1c1c]">Mô-đun Bổ Trợ (.sgmodule)</h2>
-                                <span class="pill-tag border border-[#eceae4] text-[#5f5f5d]">Cho ai có VPN 4G</span>
-                            </div>
-                            <p class="text-[13px] text-[#5f5f5d] mt-0.5">
-                                Cắm vào cấu hình proxy/VPN đang có mà không làm mất gói mạng của bạn.
-                            </p>
-                        </div>
+            <!-- 2. MÔ-ĐUN -->
+            <section class="lovable-card p-4 sm:p-5">
+                <div class="flex items-center gap-3 mb-3.5">
+                    <div class="w-7 h-7 rounded-full border border-[#eceae4] text-[#1c1c1c] text-xs font-semibold flex items-center justify-center shrink-0">
+                        2
                     </div>
+                    <h2 class="text-[17px] text-[#1c1c1c]">Mô-đun</h2>
                 </div>
 
-                <div class="pt-3 border-t border-[#eceae4] flex flex-col sm:flex-row gap-2.5">
+                <div class="flex flex-col sm:flex-row gap-2">
                     <a id="btn-module-open" href="shadowrocket://install?module=https%3A%2F%2Fraw.githubusercontent.com%2Flhhoang5425%2Fnocket-gay-hoang3te%2Fmain%2Fnocket-gay.sgmodule"
                        class="btn-dark flex-1">
                         <i class="fa-solid fa-puzzle-piece text-xs opacity-90"></i>
-                        <span>Cài Mô-đun vào Shadowrocket</span>
+                        <span>Mở & Cài Mô-đun (.sgmodule)</span>
                     </a>
                     <button onclick="copyLink('https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/nocket-gay.sgmodule')"
                             class="btn-ghost">
@@ -228,54 +189,63 @@
                 </div>
             </section>
 
-            <!-- BƯỚC 3: HỒ SƠ DNS CHỐNG THU HỒI (.MOBILECONFIG) -->
-            <section class="lovable-card p-5">
-                <div class="flex items-start justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full border border-[#eceae4] text-[#1c1c1c] text-xs font-semibold flex items-center justify-center shrink-0">
-                            3
-                        </div>
-                        <div>
-                            <div class="flex items-center gap-2">
-                                <h2 class="text-[17px] text-[#1c1c1c]">DNS Chống Thu Hồi (.mobileconfig)</h2>
-                                <span class="pill-tag border border-[#eceae4] text-[#5f5f5d]">Cho file IPA</span>
-                            </div>
-                            <p class="text-[13px] text-[#5f5f5d] mt-0.5">
-                                Hồ sơ mã hóa DoH của Apple, chạy ngầm chặn thu hồi chứng chỉ vĩnh viễn không cần VPN.
-                            </p>
-                        </div>
+            <!-- 3. DNS CHỐNG THU HỒI -->
+            <section class="lovable-card p-4 sm:p-5">
+                <div class="flex items-center gap-3 mb-3.5">
+                    <div class="w-7 h-7 rounded-full border border-[#eceae4] text-[#1c1c1c] text-xs font-semibold flex items-center justify-center shrink-0">
+                        3
                     </div>
+                    <h2 class="text-[17px] text-[#1c1c1c]">DNS Chống Thu Hồi</h2>
                 </div>
 
-                <div class="pt-3 border-t border-[#eceae4] flex flex-col sm:flex-row gap-2.5">
+                <div class="flex flex-col sm:flex-row gap-2">
                     <a href="https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/LocketGold.mobileconfig"
-                       class="btn-ghost w-full">
+                       class="btn-dark flex-1">
                         <i class="fa-brands fa-apple text-sm"></i>
-                        <span>Tải & Cài Hồ Sơ trực tiếp vào iPhone</span>
+                        <span>Cài Đặt Hồ Sơ (.mobileconfig)</span>
                     </a>
+                    <button onclick="copyLink('https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/LocketGold.mobileconfig')"
+                            class="btn-ghost">
+                        <i class="fa-regular fa-copy text-xs"></i>
+                        <span>Sao chép link</span>
+                    </button>
                 </div>
             </section>
 
         </div>
 
-        <!-- Hướng dẫn ngắn gọn -->
-        <div class="mt-8 p-4 rounded-xl border border-[#eceae4] bg-[rgba(28,28,28,0.02)] text-[13px] text-[#5f5f5d] leading-relaxed">
-            <span class="font-semibold text-[#1c1c1c]">💡 Gợi ý nhanh:</span>
-            Nếu bạn chỉ dùng Shadowrocket để lướt mạng và mở khóa Locket, chỉ cần bấm nút ở <strong class="text-[#1c1c1c]">Bước 1</strong>. Sau khi nạp xong, vào mục <em>Giải mã HTTPS</em> bật lên và tin cậy chứng chỉ là hoàn tất.
-        </div>
+        <!-- Hướng dẫn 3 bước ngắn gọn, clean nhất (Làm 1, 2 rồi 3 là Done) -->
+        <section class="mt-8 lovable-card p-5 bg-[rgba(28,28,28,0.02)]">
+            <h3 class="text-sm font-semibold text-[#1c1c1c] mb-3 flex items-center gap-2">
+                <i class="fa-solid fa-list-check text-xs"></i>
+                <span>Hướng dẫn cài đặt (3 bước là Xong)</span>
+            </h3>
+            
+            <ol class="space-y-2.5 text-[13px] text-[#5f5f5d]">
+                <li class="flex items-start gap-2.5">
+                    <span class="font-bold text-[#1c1c1c] shrink-0">1.</span>
+                    <span>Bấm nút <strong>(1)</strong> để nạp Cấu hình vào Shadowrocket ➔ Tích chọn sử dụng.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                    <span class="font-bold text-[#1c1c1c] shrink-0">2.</span>
+                    <span>Bấm nút <strong>(2)</strong> để nạp Mô-đun ➔ Vào mục <em>Giải mã HTTPS</em> bấm bật và tin cậy chứng chỉ.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                    <span class="font-bold text-[#1c1c1c] shrink-0">3.</span>
+                    <span>Bấm nút <strong>(3)</strong> tải Hồ sơ DNS ➔ Vào <em>Cài đặt iPhone</em> kích hoạt để chống thu hồi là <strong>Hoàn tất (DONE)</strong>!</span>
+                </li>
+            </ol>
+        </section>
 
     </main>
 
-    <!-- Footer (Lovable Style) -->
-    <footer class="relative z-10 text-center text-xs text-[#5f5f5d] mt-12 pt-6 border-t border-[#eceae4]">
-        <div class="flex items-center justify-center gap-4 mb-2">
-            <a href="https://github.com/lhhoang5425/nocket-gay-hoang3te" class="hover:text-[#1c1c1c] transition-colors underline decoration-[#eceae4] underline-offset-4">GitHub Repository</a>
+    <!-- Footer -->
+    <footer class="relative z-10 text-center text-xs text-[#5f5f5d] mt-10 pt-4 border-t border-[#eceae4]">
+        <div class="flex items-center justify-center gap-3">
+            <a href="https://github.com/lhhoang5425/nocket-gay-hoang3te" class="hover:text-[#1c1c1c] transition-colors underline decoration-[#eceae4] underline-offset-4">GitHub</a>
             <span>•</span>
-            <span>Thiết kế bởi Zekas Dev</span>
+            <span>Zekas Dev</span>
         </div>
-        <p class="text-[11px] text-[#5f5f5d] opacity-70">
-            Dành cho mục đích nghiên cứu và học tập cá nhân.
-        </p>
     </footer>
 
     <!-- Script Tự Động Kích Hoạt & Sao Chép -->
@@ -283,7 +253,7 @@
         function copyLink(url) {
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(url).then(() => {
-                    showToast("Đã sao chép link thành công!");
+                    showToast("Đã sao chép link!");
                 }).catch(() => fallbackCopy(url));
             } else {
                 fallbackCopy(url);
@@ -297,7 +267,7 @@
             temp.select();
             document.execCommand("copy");
             document.body.removeChild(temp);
-            showToast("Đã sao chép link thành công!");
+            showToast("Đã sao chép link!");
         }
 
         function showToast(msg) {
@@ -309,7 +279,7 @@
             setTimeout(() => {
                 toast.classList.remove("opacity-100", "translate-y-0");
                 toast.classList.add("opacity-0", "-translate-y-3");
-            }, 2200);
+            }, 2000);
         }
 
         // Tự động mở Deep Link nếu có tham số ?open=...
