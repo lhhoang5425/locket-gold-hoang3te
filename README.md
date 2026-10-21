@@ -1,4 +1,8 @@
-# 🚀 Zekas VIP Hub
+<p align="center">
+  <img src="https://i.pinimg.com/736x/d4/42/64/d4426485d809524bf737bab3964144ae.jpg" width="96" height="96" style="border-radius: 22px; object-fit: cover;" alt="Zekas VIP Hub Logo"/>
+</p>
+
+# <p align="center">🚀 Zekas VIP Hub</p>
 
 > **⚠️ Cảnh Báo Quan Trọng (Disclaimer):**  
 > Dự án chỉ nhằm mục đích nghiên cứu, học tập cá nhân và phân tích luồng mạng (Network Traffic Analysis). Nghiêm cấm thương mại hóa dưới mọi hình thức.
