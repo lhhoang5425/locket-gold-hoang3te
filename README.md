@@ -1,4 +1,4 @@
-# 🚀 Zekas VIP Hub — Shadowrocket & Locket Gold
+# 🚀 Zekas VIP Hub
 
 > **⚠️ Cảnh Báo Quan Trọng (Disclaimer):**  
 > Dự án chỉ nhằm mục đích nghiên cứu, học tập cá nhân và phân tích luồng mạng (Network Traffic Analysis). Nghiêm cấm thương mại hóa dưới mọi hình thức.
@@ -10,11 +10,11 @@
 Làm lần lượt **Bước 1**, **Bước 2** rồi **Bước 3** là hoàn tất:
 
 | Bước | Nút Bấm 1-Chạm | Loại File | Thao Tác Chi Tiết |
-| :---: | :--- | :---: | :--- |
-| **🌐 Web Hub** | [![Mở Trang Web Hub](https://img.shields.io/badge/🌐_MỞ_TRANG_WEB_CÀI_ĐẶT-2563eb?style=for-the-badge&logoColor=white)](https://lhhoang5425.github.io/nocket-gay-hoang3te/) | `Website` | Mở giao diện web Lovable trực quan, bấm 1 chạm tự mở Shadowrocket. |
-| **1** | [![Cài Config](https://img.shields.io/badge/▶_CÀI_CẤU_HÌNH_(.conf)-000000?style=for-the-badge&logo=icloud&logoColor=white)](https://lhhoang5425.github.io/nocket-gay-hoang3te/?open=conf)<br>[👉 **Mở & Cài Cấu hình (.conf)**](https://lhhoang5425.github.io/nocket-gay-hoang3te/?open=conf) | `.conf` | Nạp Cấu hình vào Shadowrocket ➔ Tích chọn sử dụng. |
-| **2** | [![Cài Module](https://img.shields.io/badge/▶_CÀI_MÔ--ĐUN_(.sgmodule)-000000?style=for-the-badge&logo=icloud&logoColor=white)](https://lhhoang5425.github.io/nocket-gay-hoang3te/?open=module)<br>[👉 **Mở & Cài Mô-đun (.sgmodule)**](https://lhhoang5425.github.io/nocket-gay-hoang3te/?open=module) | `.sgmodule` | Nạp Mô-đun ➔ Vào mục *Giải mã HTTPS* bật lên và tin cậy chứng chỉ. |
-| **3** | [![Cài DNS Profile](https://img.shields.io/badge/▶_CÀI_HỒ_SƠ_(.mobileconfig)-000000?style=for-the-badge&logo=apple&logoColor=white)](https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/LocketGold.mobileconfig)<br>[👉 **Cài Đặt Hồ Sơ (.mobileconfig)**](https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/LocketGold.mobileconfig) | `.mobileconfig` | Cài Hồ sơ DNS chống thu hồi vào iPhone ➔ **DONE (Hoàn tất)**! |
+| :---: | :---: | :---: | :--- |
+| **Web** | <a href="https://lhhoang5425.github.io/nocket-gay-hoang3te/"><img src="https://img.shields.io/badge/TRANG_WEB_CÀI_ĐẶT-2563eb?style=for-the-badge&logo=safari&logoColor=white" height="34" alt="Web Hub"/></a> | `Website` | Mở giao diện web Lovable trực quan, bấm 1 chạm tự mở Shadowrocket. |
+| **1** | <a href="https://lhhoang5425.github.io/nocket-gay-hoang3te/?open=conf"><img src="https://img.shields.io/badge/MỞ_&_CÀI_CẤU_HÌNH_(.conf)-1c1c1c?style=for-the-badge&logo=icloud&logoColor=white" height="34" alt="Cấu hình (.conf)"/></a> | `.conf` | Nạp Cấu hình vào Shadowrocket ➔ Tích chọn sử dụng. |
+| **2** | <a href="https://lhhoang5425.github.io/nocket-gay-hoang3te/?open=module"><img src="https://img.shields.io/badge/MỞ_&_CÀI_MÔ--ĐUN_(.sgmodule)-1c1c1c?style=for-the-badge&logo=icloud&logoColor=white" height="34" alt="Mô-đun (.sgmodule)"/></a> | `.sgmodule` | Nạp Mô-đun ➔ Vào mục *Giải mã HTTPS* bật lên và tin cậy chứng chỉ. |
+| **3** | <a href="https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/LocketGold.mobileconfig"><img src="https://img.shields.io/badge/CÀI_ĐẶT_HỒ_SƠ_(.mobileconfig)-1c1c1c?style=for-the-badge&logo=apple&logoColor=white" height="34" alt="Hồ sơ (.mobileconfig)"/></a> | `.mobileconfig` | Cài Hồ sơ DNS chống thu hồi vào iPhone ➔ **DONE (Hoàn tất)**! |
 
 ---
 
