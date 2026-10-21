@@ -40,7 +40,7 @@
         .lovable-card {
             background-color: var(--bg-cream);
             border: 1px solid var(--border-cream);
-            border-radius: 12px;
+            border-radius: 14px;
             transition: border-color 0.15s ease, background-color 0.15s ease;
         }
 
@@ -49,27 +49,28 @@
             background-color: rgba(255, 255, 255, 0.5);
         }
 
-        /* Signature Lovable Dark Button with Inset Shadow */
+        /* Large Prominent Dark Button */
         .btn-dark {
             background-color: var(--charcoal);
             color: var(--off-white);
-            border-radius: 6px;
-            padding: 10px 18px;
-            font-size: 14px;
-            font-weight: 500;
+            border-radius: 8px;
+            padding: 13px 20px;
+            font-size: 15px;
+            font-weight: 600;
             box-shadow: rgba(255, 255, 255, 0.2) 0px 0.5px 0px 0px inset,
                         rgba(0, 0, 0, 0.2) 0px 0px 0px 0.5px inset,
-                        rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+                        rgba(0, 0, 0, 0.06) 0px 1px 3px 0px;
             transition: opacity 0.15s ease, transform 0.1s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             cursor: pointer;
+            width: 100%;
         }
 
         .btn-dark:active {
-            opacity: 0.8;
+            opacity: 0.85;
             transform: scale(0.985);
         }
 
@@ -79,14 +80,14 @@
             color: var(--charcoal);
             border: 1px solid var(--charcoal-40);
             border-radius: 6px;
-            padding: 9px 16px;
-            font-size: 13px;
-            font-weight: 400;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 500;
             transition: background-color 0.15s ease, opacity 0.15s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 5px;
             cursor: pointer;
         }
 
@@ -98,14 +99,26 @@
             opacity: 0.8;
         }
 
+        /* Khung Link Thô */
+        .raw-link-box {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid var(--border-cream);
+            border-radius: 8px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
         /* Atmospheric subtle wash */
         .hero-wash {
             position: absolute;
             top: -60px;
             left: 50%;
             transform: translateX(-50%);
-            width: 480px;
-            height: 280px;
+            width: 500px;
+            height: 300px;
             background: radial-gradient(circle, rgba(235, 225, 205, 0.6) 0%, rgba(247, 244, 237, 0) 70%);
             filter: blur(40px);
             z-index: 0;
@@ -120,13 +133,13 @@
 
     <!-- Toast Notification (Lovable Style) -->
     <div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 transform -translate-y-3">
-        <div class="bg-[#1c1c1c] text-[#fcfbf8] px-4 py-2 rounded-full text-xs font-medium tracking-wide shadow-lg border border-[rgba(255,255,255,0.15)] flex items-center gap-2">
+        <div class="bg-[#1c1c1c] text-[#fcfbf8] px-4 py-2.5 rounded-full text-xs font-medium tracking-wide shadow-xl border border-[rgba(255,255,255,0.15)] flex items-center gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-            <span id="toast-text">Đã sao chép link</span>
+            <span id="toast-text">Đã sao chép link!</span>
         </div>
     </div>
 
-    <main class="relative z-10 max-w-[540px] mx-auto w-full my-auto">
+    <main class="relative z-10 max-w-[560px] mx-auto w-full my-auto">
         
         <!-- Header -->
         <header class="text-center mb-8 pt-2">
@@ -140,74 +153,86 @@
             </h1>
         </header>
 
-        <!-- 3 Action Cards (Clean, chỉ ghi tên chính và đuôi file trong nút) -->
-        <div class="space-y-3.5">
+        <!-- 3 Action Cards (Nút to, rõ ràng, có khung bấm copy không cần kéo chuột) -->
+        <div class="space-y-4">
 
             <!-- 1. CẤU HÌNH -->
-            <section class="lovable-card p-4 sm:p-5">
-                <div class="flex items-center gap-3 mb-3.5">
-                    <div class="w-7 h-7 rounded-full bg-[#1c1c1c] text-[#fcfbf8] text-xs font-semibold flex items-center justify-center shrink-0">
+            <section class="lovable-card p-5">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 rounded-full bg-[#1c1c1c] text-[#fcfbf8] text-xs font-semibold flex items-center justify-center shrink-0">
                         1
                     </div>
-                    <h2 class="text-[17px] text-[#1c1c1c]">Cấu hình</h2>
+                    <h2 class="text-[18px] text-[#1c1c1c]">Cấu hình</h2>
                 </div>
 
-                <div class="flex flex-col sm:flex-row gap-2">
-                    <a id="btn-conf-open" href="shadowrocket://config/add/https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/nocket-gay.conf"
-                       class="btn-dark flex-1">
-                        <i class="fa-solid fa-download text-xs opacity-90"></i>
-                        <span>Mở & Cài Cấu hình (.conf)</span>
-                    </a>
+                <!-- Nút to rõ ràng -->
+                <a id="btn-conf-open" href="shadowrocket://config/add/https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/nocket-gay.conf"
+                   class="btn-dark mb-3">
+                    <i class="fa-solid fa-download text-sm"></i>
+                    <span>Mở & Cài Cấu hình (.conf)</span>
+                </a>
+
+                <!-- Khung link thô chỉ cần bấm Copy -->
+                <div class="raw-link-box">
+                    <span class="text-xs text-[#5f5f5d] font-mono truncate select-all">https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/nocket-gay.conf</span>
                     <button onclick="copyLink('https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/nocket-gay.conf')"
-                            class="btn-ghost">
-                        <i class="fa-regular fa-copy text-xs"></i>
-                        <span>Sao chép link</span>
+                            class="btn-ghost shrink-0" title="Bấm để copy">
+                        <i class="fa-regular fa-copy"></i>
+                        <span>Sao chép</span>
                     </button>
                 </div>
             </section>
 
             <!-- 2. MÔ-ĐUN -->
-            <section class="lovable-card p-4 sm:p-5">
-                <div class="flex items-center gap-3 mb-3.5">
-                    <div class="w-7 h-7 rounded-full border border-[#eceae4] text-[#1c1c1c] text-xs font-semibold flex items-center justify-center shrink-0">
+            <section class="lovable-card p-5">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 rounded-full border border-[#eceae4] text-[#1c1c1c] text-xs font-semibold flex items-center justify-center shrink-0">
                         2
                     </div>
-                    <h2 class="text-[17px] text-[#1c1c1c]">Mô-đun</h2>
+                    <h2 class="text-[18px] text-[#1c1c1c]">Mô-đun</h2>
                 </div>
 
-                <div class="flex flex-col sm:flex-row gap-2">
-                    <a id="btn-module-open" href="shadowrocket://install?module=https%3A%2F%2Fraw.githubusercontent.com%2Flhhoang5425%2Fnocket-gay-hoang3te%2Fmain%2Fnocket-gay.sgmodule"
-                       class="btn-dark flex-1">
-                        <i class="fa-solid fa-puzzle-piece text-xs opacity-90"></i>
-                        <span>Mở & Cài Mô-đun (.sgmodule)</span>
-                    </a>
+                <!-- Nút to rõ ràng -->
+                <a id="btn-module-open" href="shadowrocket://install?module=https%3A%2F%2Fraw.githubusercontent.com%2Flhhoang5425%2Fnocket-gay-hoang3te%2Fmain%2Fnocket-gay.sgmodule"
+                   class="btn-dark mb-3">
+                    <i class="fa-solid fa-puzzle-piece text-sm"></i>
+                    <span>Mở & Cài Mô-đun (.sgmodule)</span>
+                </a>
+
+                <!-- Khung link thô chỉ cần bấm Copy -->
+                <div class="raw-link-box">
+                    <span class="text-xs text-[#5f5f5d] font-mono truncate select-all">https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/nocket-gay.sgmodule</span>
                     <button onclick="copyLink('https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/nocket-gay.sgmodule')"
-                            class="btn-ghost">
-                        <i class="fa-regular fa-copy text-xs"></i>
-                        <span>Sao chép link</span>
+                            class="btn-ghost shrink-0" title="Bấm để copy">
+                        <i class="fa-regular fa-copy"></i>
+                        <span>Sao chép</span>
                     </button>
                 </div>
             </section>
 
             <!-- 3. DNS CHỐNG THU HỒI -->
-            <section class="lovable-card p-4 sm:p-5">
-                <div class="flex items-center gap-3 mb-3.5">
-                    <div class="w-7 h-7 rounded-full border border-[#eceae4] text-[#1c1c1c] text-xs font-semibold flex items-center justify-center shrink-0">
+            <section class="lovable-card p-5">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 rounded-full border border-[#eceae4] text-[#1c1c1c] text-xs font-semibold flex items-center justify-center shrink-0">
                         3
                     </div>
-                    <h2 class="text-[17px] text-[#1c1c1c]">DNS Chống Thu Hồi</h2>
+                    <h2 class="text-[18px] text-[#1c1c1c]">DNS Chống Thu Hồi</h2>
                 </div>
 
-                <div class="flex flex-col sm:flex-row gap-2">
-                    <a href="https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/LocketGold.mobileconfig"
-                       class="btn-dark flex-1">
-                        <i class="fa-brands fa-apple text-sm"></i>
-                        <span>Cài Đặt Hồ Sơ (.mobileconfig)</span>
-                    </a>
+                <!-- Nút to rõ ràng -->
+                <a href="https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/LocketGold.mobileconfig"
+                   class="btn-dark mb-3">
+                    <i class="fa-brands fa-apple text-base"></i>
+                    <span>Cài Đặt Hồ Sơ (.mobileconfig)</span>
+                </a>
+
+                <!-- Khung link thô chỉ cần bấm Copy -->
+                <div class="raw-link-box">
+                    <span class="text-xs text-[#5f5f5d] font-mono truncate select-all">https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/LocketGold.mobileconfig</span>
                     <button onclick="copyLink('https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/LocketGold.mobileconfig')"
-                            class="btn-ghost">
-                        <i class="fa-regular fa-copy text-xs"></i>
-                        <span>Sao chép link</span>
+                            class="btn-ghost shrink-0" title="Bấm để copy">
+                        <i class="fa-regular fa-copy"></i>
+                        <span>Sao chép</span>
                     </button>
                 </div>
             </section>
