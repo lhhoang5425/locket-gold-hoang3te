@@ -6,7 +6,19 @@
 > 2. **Bảo Mật & Rủi Ro:** Việc sử dụng các cấu hình can thiệp HTTPS (MITM) yêu cầu cài đặt chứng chỉ CA cục bộ trên thiết bị. Bạn hoàn toàn tự chịu trách nhiệm về tính an toàn dữ liệu và thiết bị của mình.
 > 3. **Bản Quyền & Điều Khoản:** Dự án không khuyến khích hay cổ súy cho các hành vi lạm dụng, vi phạm điều khoản sử dụng của các dịch vụ bên thứ ba. Tác giả không chịu trách nhiệm đối với bất kỳ hành vi sử dụng trái phép nào.
 > 4. **Khuyến Nghị:** Nghiêm cấm chia sẻ rộng rãi hoặc thương mại hóa dưới mọi hình thức.
-> 
-> 5. **Link Cấu Hình Shadowrocket (Raw URL):**
-> - https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/nocket-gay.conf
-> - https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/nocket-gay
+
+---
+
+### 🚀 Link Cài Đặt Cho Shadowrocket / Surge:
+
+#### 1. Dạng Mô-đun bổ trợ (`.sgmodule`) - Khuyên dùng nếu đã có Proxy/VPN:
+*(Nạp vào mục **Cấu hình (Config)** ➔ **Mô-đun (Modules)** trong Shadowrocket)*
+```text
+https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/nocket-gay.sgmodule
+```
+
+#### 2. Dạng Cấu hình trọn gói (`.conf`):
+*(Nạp trực tiếp ở màn hình chính tab **Cấu hình (Config)** ➔ Bấm dấu **`+`**)*
+```text
+https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/nocket-gay.conf
+```
