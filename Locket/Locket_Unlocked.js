@@ -52,7 +52,7 @@ if (ua.includes("Locket")) {
             tag: "LOCKET GOLD ALL FEATURES",
             tag_gradient: true,
             tag_style: "gold_gradient",
-            title: "Lên Locket Gold rồi đó 😎",
+            title: "ʟêɴ ʟᴏᴄᴋᴇᴛ ɢᴏʟᴅ ʀồɪ ɴʜé 😍",
             feature_set: [
                 {
                     title: "Nhớ follow kênh TikTok @hoang3te ✨",
