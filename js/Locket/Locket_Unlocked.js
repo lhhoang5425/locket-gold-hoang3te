@@ -49,10 +49,10 @@ if (ua.includes("Locket")) {
             profile_banner: true
         }),
         feature_discovery_popup_config: JSON.stringify({
-            tag: "LOCKET GOLD FULL ",
+            tag: "LOCKET GOLD ALL FEATURES",
             tag_gradient: true,
             tag_style: "gold_gradient",
-            title: "Lên Locket Gold rồi nhé 😍",
+            title: "Lên Locket Gold rồi đó 😎",
             feature_set: [
                 {
                     title: "Nhớ follow kênh TikTok @hoang3te ✨",
@@ -61,7 +61,7 @@ if (ua.includes("Locket")) {
                 }
             ],
             primary_button_title: "Xong rồi nhé!",
-            campaign: "locket_gold_welcome_v3",
+            campaign: "locket_gold_welcome_v2",
             start_at: "2020-01-01T00:00:00",
             end_at: "2099-12-31T23:59:59",
             use_local_time_zone: true
@@ -115,15 +115,15 @@ if (ua.includes("Locket")) {
             qualityMbps: 0.6
         }),
         camera_roll: JSON.stringify({
-            gold_max_duration: 30.0,
-            goldMaxDuration: 30.0,
-            video_max_duration: 30.0,
-            videoMaxDuration: 30.0,
-            max_duration: 30.0,
-            maxDuration: 30.0,
-            trim_max_duration: 30.0,
-            trimMaxDuration: 30.0,
-            camera_roll_max_duration: 30.0,
+            gold_max_duration: 60.0,
+            goldMaxDuration: 60.0,
+            video_max_duration: 60.0,
+            videoMaxDuration: 60.0,
+            max_duration: 60.0,
+            maxDuration: 60.0,
+            trim_max_duration: 60.0,
+            trimMaxDuration: 60.0,
+            camera_roll_max_duration: 60.0,
             quality_mbps: 0.6,
             qualityMbps: 0.6,
             flash_button: true
