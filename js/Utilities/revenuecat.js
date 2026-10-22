@@ -16,6 +16,8 @@ hostname=api.revenuecat.com
 
 // ========= ID ========= //
 const mapping = {
+  'Locket': ['Gold', 'locket_1600_1y'],
+  'locket': ['Gold', 'locket_1600_1y'],
   'Subtracky': ['premium','premium_subtracky_lifetime'],
   'Accountit/': ['spenditPlus','DesignTech.SIA.Spendit.Plus.Lifetime'],
   'Haushaltsbuch': ['full_access','com.fabian.hasse.haushaltsbuch.upgrade.combined'],
