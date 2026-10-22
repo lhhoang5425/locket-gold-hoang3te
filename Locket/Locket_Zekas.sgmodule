@@ -3,6 +3,14 @@
 #!desc=Crack Full By Zekas Dev (iOS 15-18 Compatible)
 
 [Rule]
+# Chống thu hồi chứng chỉ (Anti-Revoke)
+DOMAIN,ocsp.apple.com,REJECT
+DOMAIN,ocsp2.apple.com,REJECT
+DOMAIN,crl.apple.com,REJECT
+DOMAIN,valid.apple.com,REJECT
+DOMAIN,appattest.apple.com,REJECT
+DOMAIN-SUFFIX,ocsp.apple.com,REJECT
+
 # Chặn QUIC/HTTP3 qua UDP (Port 443) ép iOS 17 dùng TCP HTTPS để giải mã MITM
 AND,((PROTOCOL,UDP),(DEST-PORT,443)),REJECT-NO-DROP
 AND,((DOMAIN,firebaseremoteconfig.googleapis.com),(PROTOCOL,UDP)),REJECT
