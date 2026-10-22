@@ -245,11 +245,11 @@
                     <h2 class="text-[18px] text-[#1c1c1c]">DNS Chống Thu Hồi</h2>
                 </div>
 
-                <a href="Locket/LocketGold.mobileconfig" download="LocketGold.mobileconfig"
+                <button type="button" id="btn-dns-install" onclick="installDNSProfile()"
                    class="btn-dark mb-3">
                     <i class="fa-brands fa-apple text-base"></i>
                     <span>Cài Đặt Hồ Sơ (.mobileconfig)</span>
-                </a>
+                </button>
 
                 <div class="raw-link-box">
                     <span class="text-xs text-[#5f5f5d] font-mono truncate select-all">https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/Locket/LocketGold.mobileconfig</span>
@@ -831,6 +831,81 @@
             showToast("Đã tải!");
         }
 
+        // ==========================================
+        // CÀI ĐẶT HỒ SƠ DNS (.mobileconfig) CHO iOS SAFARI
+        // ==========================================
+        const DNS_PROFILE_XML = `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadDisplayName</key>
+    <string>Locket Gold 💛 (Zekas Dev)</string>
+    <key>PayloadDescription</key>
+    <string>Hồ sơ cấu hình VIP chặn thu hồi Locket Gold vĩnh viễn.&#10;@zekas</string>
+    <key>PayloadIdentifier</key>
+    <string>com.zekas.locketgold.profile</string>
+    <key>PayloadScope</key>
+    <string>System</string>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>5C65C291-3F3C-4499-8985-13B95B83DADB</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+    <key>PayloadOrganization</key>
+    <string>Zekas Dev</string>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>DNSSettings</key>
+            <dict>
+                <key>DNSProtocol</key>
+                <string>HTTPS</string>
+                <key>ServerURL</key>
+                <string>https://my.ublockdns.com/z451ak95</string>
+            </dict>
+            <key>OnDemandRules</key>
+            <array>
+                <dict>
+                    <key>Action</key>
+                    <string>Connect</string>
+                </dict>
+            </array>
+            <key>PayloadType</key>
+            <string>com.apple.dnsSettings.managed</string>
+            <key>PayloadIdentifier</key>
+            <string>com.zekas.locketgold.dns</string>
+            <key>PayloadUUID</key>
+            <string>D9D4521F-75BC-4FC5-BECC-26D26A508150</string>
+            <key>PayloadDisplayName</key>
+            <string>Locket Gold DNS (Zekas)</string>
+            <key>PayloadOrganization</key>
+            <string>Zekas Dev</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+        </dict>
+    </array>
+</dict>
+</plist>`;
+
+        function installDNSProfile() {
+            try {
+                const mimeType = "application/x-apple-aspen-config";
+                const blob = new Blob([DNS_PROFILE_XML], { type: mimeType });
+                const blobUrl = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = blobUrl;
+                link.download = "LocketGold.mobileconfig";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                setTimeout(() => URL.revokeObjectURL(blobUrl), 1500);
+            } catch (err) {
+                // Fallback nếu trình duyệt chặn blob
+                window.location.href = "Locket/LocketGold.mobileconfig";
+            }
+        }
+
         // Tự động mở Deep Link nếu có tham số ?open=...
         document.addEventListener("DOMContentLoaded", function() {
             const params = new URLSearchParams(window.location.search);
@@ -840,7 +915,7 @@
             } else if (action === "module") {
                 window.location.href = "shadowrocket://install?module=https%3A%2F%2Fraw.githubusercontent.com%2Flhhoang5425%2Fnocket-gay-hoang3te%2Fmain%2FConfig%2Fnocket-gay.sgmodule";
             } else if (action === "dns") {
-                window.location.href = "Locket/LocketGold.mobileconfig";
+                installDNSProfile();
             }
         });
     </script>
