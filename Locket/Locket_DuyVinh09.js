@@ -1,6 +1,6 @@
 // ========= ID ========= //
 // Locket: Gold + Filter Pack
-// Tác giả: @lhhoang5425 | Telegram: @hoang3te
+// @duyvinh09
 // ========= Phần cố định ========= //
 var ua = $request.headers["User-Agent"] || $request.headers["user-agent"],
     obj = JSON.parse($response.body);
