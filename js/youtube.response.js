@@ -308,7 +308,7 @@
   Mr();
 
   function pr(l) {
-      if (!l) throw new Error("BigInt unavailable, see https:  }
+      if (!l) throw new Error("BigInt unavailable"); }
   var hr = /^-?[0-9]+$/,
       Ne = 4294967296,
       Te = 2147483648,
