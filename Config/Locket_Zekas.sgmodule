@@ -1,0 +1,17 @@
+#!name=Locket Gold Full - Zekas Dev
+#!desc=Mở khóa Locket Gold 60s, không quảng cáo, popup chào mừng, full tính năng bởi Zekas Dev
+#!author=Zekas Dev
+
+[Header Rewrite]
+^https?://api.revenuecat.com/.+/(receipts$|subscribers/?(.*?)*$) header-del x-revenuecat-etag
+^https?://api.revenuecat.com/.+/(receipts$|subscribers/?(.*?)*$) header-del X-RevenueCat-ETag
+
+[Script]
+deleteHeader = type=http-request,pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers),script-path=https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/js/Locket/deleteHeader.js,timeout=60
+
+revenuecat = type=http-response,pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/[^/]+$),script-path=https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/js/Locket/Locket_Zekas.js,requires-body=true,max-size=-1,timeout=60
+
+locket_rc = type=http-response,pattern=^https:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-4252a\/.+,script-path=https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/js/Locket/Locket_Unlocked.js,requires-body=true,max-size=-1,timeout=60
+
+[MITM]
+hostname = %APPEND% api.revenuecat.com, firebaseremoteconfig.googleapis.com
