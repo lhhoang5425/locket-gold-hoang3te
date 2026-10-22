@@ -9,6 +9,7 @@
     <link rel="icon" href="https://i.pinimg.com/736x/d4/42/64/d4426485d809524bf737bab3964144ae.jpg" type="image/jpeg">
     <link rel="apple-touch-icon" href="https://i.pinimg.com/736x/d4/42/64/d4426485d809524bf737bab3964144ae.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fix-webm-duration/fix-webm-duration.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -177,16 +178,9 @@
                 <span>Zekas Dev</span>
             </div>
             
-            <h1 class="text-3xl sm:text-4xl text-[#1c1c1c] mb-3">
+            <h1 class="text-3xl sm:text-4xl text-[#1c1c1c]">
                 Zekas VIP Hub
             </h1>
-
-            <!-- Nút bấm nhảy nhanh xuống Trình Nén Video -->
-            <div class="flex items-center gap-2 mt-1">
-                <a href="#compressor-section" class="btn-dark !text-xs !py-2 !px-4 !bg-amber-600 hover:!bg-amber-700 !w-auto shadow-sm">
-                    <i class="fa-solid fa-film"></i> 🎬 Bấm vào đây để Nén Video Locket (&lt;6MB)
-                </a>
-            </div>
         </header>
 
         <!-- Action Cards -->
@@ -269,43 +263,31 @@
 
             <!-- 4. TIỆN ÍCH NÉN VIDEO LOCKET (<6MB) -->
             <section class="lovable-card p-5" id="compressor-section">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full bg-amber-500 text-[#fcfbf8] text-xs font-semibold flex items-center justify-center shrink-0">
-                            4
-                        </div>
-                        <div>
-                            <h2 class="text-[18px] text-[#1c1c1c]">Nén Video Locket</h2>
-                            <p class="text-xs text-[#5f5f5d]">Ép dung lượng &lt; 6MB để tải lên Locket không bị lỗi</p>
-                        </div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 rounded-full bg-[#1c1c1c] text-[#fcfbf8] text-xs font-semibold flex items-center justify-center shrink-0">
+                        4
                     </div>
-                    <span class="px-2.5 py-0.5 text-[11px] font-semibold bg-emerald-100 text-emerald-800 rounded-full">Miễn Phí</span>
+                    <h2 class="text-[18px] text-[#1c1c1c]">Nén Video</h2>
                 </div>
 
                 <!-- Khung Chọn / Thả Video -->
                 <div id="drop-zone" class="border-2 border-dashed border-[#eceae4] hover:border-[#1c1c1c] rounded-xl p-5 text-center cursor-pointer transition-colors bg-[rgba(28,28,28,0.015)] mb-4">
                     <input type="file" id="video-file-input" accept="video/*" class="hidden">
                     
-                    <div id="upload-prompt" class="flex flex-col items-center gap-2">
-                        <div class="w-12 h-12 rounded-full bg-[#f7f4ed] border border-[#eceae4] flex items-center justify-center text-[#1c1c1c] text-lg shadow-sm">
-                            <i class="fa-solid fa-film"></i>
-                        </div>
-                        <p class="text-sm font-semibold text-[#1c1c1c]">Chạm để chọn Video từ Album ảnh</p>
-                        <p class="text-xs text-[#5f5f5d]">Hỗ trợ mọi định dạng MP4, MOV, 4K, 60fps...</p>
+                    <div id="upload-prompt" class="flex flex-col items-center gap-1 py-1">
+                        <p class="text-sm font-semibold text-[#1c1c1c]">Chạm để chọn video</p>
+                        <p class="text-xs text-[#5f5f5d]">Tối đa 6MB</p>
                     </div>
 
                     <div id="video-info-box" class="hidden flex-col items-center gap-2">
-                        <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-base">
-                            <i class="fa-solid fa-circle-check"></i>
-                        </div>
                         <p id="video-info-name" class="text-xs font-semibold text-[#1c1c1c] truncate max-w-[280px]"></p>
                         <div class="flex items-center gap-2 text-xs text-[#5f5f5d]">
-                            <span>Dung lượng gốc: <strong id="video-info-size" class="text-rose-500"></strong></span>
+                            <span id="video-info-size" class="font-semibold text-[#1c1c1c]"></span>
                             <span>•</span>
                             <span id="video-info-duration"></span>
                         </div>
                         <button type="button" id="btn-change-video" class="btn-ghost mt-1 !text-[11px] !py-1">
-                            <i class="fa-solid fa-arrow-rotate-left"></i> Chọn video khác
+                            Chọn video khác
                         </button>
                     </div>
                 </div>
@@ -313,65 +295,47 @@
                 <!-- Tuỳ chọn Dung lượng đích -->
                 <div class="mb-4">
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-xs font-semibold text-[#1c1c1c]">Chọn dung lượng mong muốn:</span>
-                        <span id="target-size-badge" class="text-xs font-bold text-emerald-700">5.0 MB (Chuẩn Locket Gold)</span>
+                        <span class="text-xs font-semibold text-[#1c1c1c]">Dung lượng:</span>
+                        <span id="target-size-badge" class="text-xs font-medium text-[#5f5f5d]">5.0 MB</span>
                     </div>
                     <div class="grid grid-cols-3 gap-2">
-                        <button type="button" class="size-preset-btn active" data-size="5.0">
-                            <span class="font-bold">5.0 MB</span>
-                            <span class="text-[10px] block opacity-75">Chuẩn Gold</span>
-                        </button>
-                        <button type="button" class="size-preset-btn" data-size="4.0">
-                            <span class="font-bold">4.0 MB</span>
-                            <span class="text-[10px] block opacity-75">An Toàn</span>
-                        </button>
-                        <button type="button" class="size-preset-btn" data-size="3.0">
-                            <span class="font-bold">3.0 MB</span>
-                            <span class="text-[10px] block opacity-75">Siêu Nhẹ</span>
-                        </button>
+                        <button type="button" class="size-preset-btn active" data-size="5.0">5.0 MB</button>
+                        <button type="button" class="size-preset-btn" data-size="4.0">4.0 MB</button>
+                        <button type="button" class="size-preset-btn" data-size="3.0">3.0 MB</button>
                     </div>
                 </div>
 
                 <!-- Nút Bắt Đầu Nén -->
                 <button type="button" id="btn-start-compress" class="btn-dark mb-3 disabled:opacity-40 disabled:cursor-not-allowed" disabled>
-                    <i class="fa-solid fa-bolt"></i>
-                    <span>Bắt Đầu Nén Video</span>
+                    Bắt Đầu Nén
                 </button>
 
                 <!-- Thanh Tiến Trình (Progress) -->
                 <div id="compress-progress-box" class="hidden mb-4 p-4 rounded-xl bg-white border border-[#eceae4]">
                     <div class="flex items-center justify-between text-xs mb-2">
-                        <span id="compress-status-text" class="font-medium text-[#1c1c1c] flex items-center gap-2">
-                            <i class="fa-solid fa-spinner fa-spin text-amber-500"></i> Đang nén trực tiếp trên chip iPhone...
-                        </span>
-                        <span id="compress-percentage" class="font-bold text-amber-600">0%</span>
+                        <span id="compress-status-text" class="font-medium text-[#1c1c1c]">Đang nén...</span>
+                        <span id="compress-percentage" class="font-bold text-[#1c1c1c]">0%</span>
                     </div>
-                    <div class="w-full bg-[#f7f4ed] rounded-full h-2 overflow-hidden border border-[#eceae4]">
-                        <div id="compress-progress-bar" class="bg-amber-500 h-2 rounded-full transition-all duration-150" style="width: 0%"></div>
+                    <div class="w-full bg-[#f7f4ed] rounded-full h-1.5 overflow-hidden">
+                        <div id="compress-progress-bar" class="bg-[#1c1c1c] h-1.5 rounded-full transition-all duration-150" style="width: 0%"></div>
                     </div>
-                    <p class="text-[11px] text-[#5f5f5d] mt-2 text-center">Xử lý 100% cục bộ trên máy, hoàn toàn bảo mật và không tải video lên mạng.</p>
                 </div>
 
                 <!-- Kết Quả Nén Xong -->
-                <div id="compress-result-box" class="hidden flex-col gap-3 p-4 rounded-xl bg-emerald-50/50 border border-emerald-200 mb-2">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-circle-check text-emerald-600"></i>
-                            <span class="text-xs font-bold text-emerald-800">Đã nén xong sẵn sàng up!</span>
-                        </div>
-                        <span id="result-size-badge" class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800"></span>
+                <div id="compress-result-box" class="hidden flex-col gap-3 p-4 rounded-xl bg-[rgba(28,28,28,0.02)] border border-[#eceae4] mb-2">
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="font-semibold text-[#1c1c1c]">Đã nén xong</span>
+                        <span id="result-size-badge" class="font-medium text-[#5f5f5d]"></span>
                     </div>
 
                     <video id="result-video-preview" controls playsinline class="w-full max-h-56 rounded-lg bg-black object-contain"></video>
 
-                    <div class="flex flex-col sm:flex-row gap-2 mt-1">
-                        <button type="button" id="btn-save-video" class="btn-dark !bg-emerald-600 hover:!bg-emerald-700 !py-2.5">
-                            <i class="fa-brands fa-apple text-base"></i>
-                            <span>Lưu Vào Album Ảnh</span>
+                    <div class="flex gap-2 mt-1">
+                        <button type="button" id="btn-save-video" class="btn-dark !py-2.5">
+                            Lưu vào máy
                         </button>
-                        <button type="button" id="btn-download-fallback" class="btn-ghost !border-emerald-600 !text-emerald-700 !py-2.5">
-                            <i class="fa-solid fa-download"></i>
-                            <span>Tải tệp .mp4</span>
+                        <button type="button" id="btn-download-fallback" class="btn-ghost !py-2.5 shrink-0">
+                            Tải về
                         </button>
                     </div>
                 </div>
@@ -580,17 +544,12 @@
                 resultBox.classList.remove("flex");
                 progressBar.style.width = "0%";
                 progressPct.textContent = "0%";
-                statusText.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-amber-500"></i> Đang chuẩn bị nén...';
+                statusText.textContent = "Đang nén...";
 
                 try {
                     compressedBlob = await runVideoCompression(selectedFile, selectedTargetMB, (pct) => {
                         progressBar.style.width = `${pct}%`;
                         progressPct.textContent = `${pct}%`;
-                        if (pct < 95) {
-                            statusText.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-amber-500"></i> Đang nén trên chip iPhone...';
-                        } else {
-                            statusText.innerHTML = '<i class="fa-solid fa-check text-emerald-500"></i> Đang đóng gói video...';
-                        }
                     });
 
                     // Xong
@@ -599,18 +558,17 @@
                     resultBox.classList.add("flex");
 
                     const newSize = formatBytes(compressedBlob.size);
-                    const pctSaved = Math.max(0, Math.round(((selectedFile.size - compressedBlob.size) / selectedFile.size) * 100));
-                    resultSizeBadge.textContent = `${newSize} (Giảm ${pctSaved}%)`;
+                    resultSizeBadge.textContent = newSize;
 
                     const videoURL = URL.createObjectURL(compressedBlob);
                     resultVideoPreview.src = videoURL;
                     resultVideoPreview.load();
 
-                    showToast("Đã nén xong video chuẩn Locket!");
+                    showToast("Đã nén xong!");
                 } catch (err) {
                     console.error("Compression error:", err);
                     progressBox.classList.add("hidden");
-                    showToast("Lỗi nén: " + (err.message || "Thiết bị không hỗ trợ định dạng này"));
+                    showToast("Lỗi nén video!");
                 } finally {
                     isCompressing = false;
                     btnStartCompress.disabled = false;
@@ -618,28 +576,59 @@
             });
         }
 
-        // Hàm nén bằng MediaRecorder + Canvas
+        // Hàm nén chuẩn - Không bị lỗi giới hạn 6s hoặc lặp 2s
         function runVideoCompression(file, targetMB, onProgress) {
             return new Promise(async (resolve, reject) => {
                 const video = document.createElement("video");
+                video.preload = "auto";
                 video.src = URL.createObjectURL(file);
-                video.muted = false;
                 video.playsInline = true;
                 video.crossOrigin = "anonymous";
+                video.muted = false;
+                video.volume = 0.001; // Giữ volume thấp để không bị Autoplay chặn
 
-                await new Promise((res, rej) => {
-                    video.onloadedmetadata = () => res();
-                    video.onerror = rej;
-                });
+                // Đưa video vào DOM ẩn để trình duyệt không tự đóng băng (freeze)
+                const hiddenHolder = document.createElement("div");
+                hiddenHolder.style.cssText = "position:fixed;top:-9999px;left:-9999px;width:10px;height:10px;overflow:hidden;opacity:0.001;pointer-events:none;";
+                hiddenHolder.appendChild(video);
+                document.body.appendChild(hiddenHolder);
 
-                const duration = video.duration || 10;
-                // Target bitrate in bps with 10% safety margin
+                function cleanup() {
+                    if (hiddenHolder.parentNode) hiddenHolder.parentNode.removeChild(hiddenHolder);
+                    URL.revokeObjectURL(video.src);
+                }
+
+                try {
+                    await new Promise((res, rej) => {
+                        video.onloadedmetadata = () => res();
+                        video.onerror = rej;
+                    });
+                } catch (e) {
+                    cleanup();
+                    return reject(new Error("Lỗi đọc metadata video"));
+                }
+
+                let duration = video.duration;
+                if (!isFinite(duration) || duration === 0 || isNaN(duration)) {
+                    video.currentTime = 1e7;
+                    await new Promise(r => {
+                        video.ontimeupdate = () => {
+                            duration = video.duration || video.currentTime;
+                            video.currentTime = 0;
+                            video.ontimeupdate = null;
+                            r();
+                        };
+                    });
+                }
+                duration = duration || 10;
+
+                // Tính toán bitrate chuẩn để luôn dưới ngưỡng targetMB
                 const targetBytes = targetMB * 1024 * 1024 * 0.90;
                 const totalBitrate = Math.floor((targetBytes * 8) / duration);
                 const audioBitrate = 64000;
                 const videoBitrate = Math.max(250000, totalBitrate - audioBitrate);
 
-                // Resolution scaling: max 720p for fast encoding & crisp look
+                // Giới hạn độ phân giải tối đa 720p (số chẵn)
                 let w = video.videoWidth || 720;
                 let h = video.videoHeight || 1280;
                 const maxDim = 720;
@@ -662,13 +651,17 @@
 
                 const stream = canvas.captureStream ? canvas.captureStream(30) : null;
                 if (!stream) {
+                    cleanup();
                     return reject(new Error("Trình duyệt không hỗ trợ captureStream"));
                 }
 
-                // Audio Context capture
+                // Thu âm thanh
                 let audioCtx = null;
                 try {
                     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    if (audioCtx.state === "suspended") {
+                        await audioCtx.resume();
+                    }
                     const source = audioCtx.createMediaElementSource(video);
                     const dest = audioCtx.createMediaStreamDestination();
                     source.connect(dest);
@@ -677,10 +670,10 @@
                         stream.addTrack(audioTrack);
                     }
                 } catch (audioErr) {
-                    console.warn("AudioContext capture fallback:", audioErr);
+                    console.warn("AudioContext fallback:", audioErr);
                 }
 
-                // Supported MIME
+                // Định dạng xuất: Ưu tiên MP4
                 let mimeType = "video/mp4";
                 const candidates = [
                     "video/mp4;codecs=avc1.42E01E,mp4a.40.2",
@@ -712,50 +705,78 @@
                     if (e.data && e.data.size > 0) chunks.push(e.data);
                 };
 
+                let isDone = false;
+                let frameTimer = null;
+
+                function stopAll() {
+                    if (isDone) return;
+                    isDone = true;
+                    if (frameTimer) clearInterval(frameTimer);
+                    if (recorder.state === "recording") {
+                        recorder.stop();
+                    }
+                }
+
                 recorder.onstop = () => {
-                    const finalBlob = new Blob(chunks, { type: mimeType });
+                    let finalBlob = new Blob(chunks, { type: mimeType });
                     if (audioCtx && audioCtx.state !== "closed") {
                         audioCtx.close();
                     }
-                    URL.revokeObjectURL(video.src);
-                    resolve(finalBlob);
+                    cleanup();
+
+                    // Vá lỗi thiếu Duration của WebM trên Chrome/Windows
+                    if (mimeType.includes("webm") && typeof window.ysFixWebmDuration === "function") {
+                        const durationMs = Math.round(duration * 1000);
+                        window.ysFixWebmDuration(finalBlob, durationMs, (fixedBlob) => {
+                            resolve(fixedBlob);
+                        });
+                    } else {
+                        resolve(finalBlob);
+                    }
                 };
 
                 recorder.onerror = (e) => {
                     if (audioCtx && audioCtx.state !== "closed") audioCtx.close();
-                    URL.revokeObjectURL(video.src);
+                    cleanup();
                     reject(e);
                 };
 
-                recorder.start(200);
+                // Khởi động ghi không truyền timeslice để tránh lỗi vỡ timeline WebM
+                recorder.start();
 
-                let animId = null;
-                function drawLoop() {
-                    if (video.paused || video.ended) return;
+                // Vòng lặp vẽ frame liên tục
+                function drawFrame() {
+                    if (video.paused || video.ended || isDone) return;
                     ctx.drawImage(video, 0, 0, w, h);
-                    const pct = Math.min(99, Math.round((video.currentTime / duration) * 100));
+                    const cur = video.currentTime;
+                    const pct = Math.min(99, Math.round((cur / duration) * 100));
                     onProgress(pct);
-                    animId = requestAnimationFrame(drawLoop);
+
+                    if (cur >= duration - 0.15) {
+                        onProgress(100);
+                        stopAll();
+                    }
                 }
 
-                video.onplay = () => {
-                    animId = requestAnimationFrame(drawLoop);
-                };
+                frameTimer = setInterval(drawFrame, 1000 / 30);
+
+                if ("requestVideoFrameCallback" in video) {
+                    function rfc() {
+                        if (video.paused || video.ended || isDone) return;
+                        drawFrame();
+                        video.requestVideoFrameCallback(rfc);
+                    }
+                    video.requestVideoFrameCallback(rfc);
+                }
 
                 video.onended = () => {
-                    cancelAnimationFrame(animId);
                     onProgress(100);
-                    setTimeout(() => {
-                        if (recorder.state === "recording") {
-                            recorder.stop();
-                        }
-                    }, 250);
+                    stopAll();
                 };
 
                 try {
                     await video.play();
                 } catch (playErr) {
-                    // Try muted if autoplay policy blocked sound
                     video.muted = true;
                     await video.play();
                 }
@@ -766,33 +787,32 @@
         if (btnSaveVideo) {
             btnSaveVideo.addEventListener("click", async () => {
                 if (!compressedBlob) return;
-                const filename = `Locket_Gold_${Date.now()}.mp4`;
-                const file = new File([compressedBlob], filename, { type: compressedBlob.type || "video/mp4" });
+                const ext = compressedBlob.type.includes("webm") ? "webm" : "mp4";
+                const filename = `Locket_Gold_${Date.now()}.${ext}`;
+                const file = new File([compressedBlob], filename, { type: compressedBlob.type });
 
                 if (navigator.canShare && navigator.canShare({ files: [file] })) {
                     try {
                         await navigator.share({
                             files: [file],
-                            title: "Locket Gold Video",
-                            text: "Lưu video để đăng lên Locket Gold"
+                            title: "Locket Video"
                         });
-                        showToast("Chọn 'Lưu video' để vào Album Ảnh!");
+                        showToast("Đã lưu!");
                         return;
                     } catch (shareErr) {
-                        if (shareErr.name === "AbortError") return; // Người dùng tự hủy bảng chia sẻ
-                        console.warn("Share failed, fallback to direct download:", shareErr);
+                        if (shareErr.name === "AbortError") return;
                     }
                 }
-                // Fallback tải file
                 triggerDownload(compressedBlob, filename);
             });
         }
 
-        // Tải xuống file .mp4 dự phòng
+        // Tải xuống file dự phòng
         if (btnDownloadFallback) {
             btnDownloadFallback.addEventListener("click", () => {
                 if (!compressedBlob) return;
-                const filename = `Locket_Gold_${Date.now()}.mp4`;
+                const ext = compressedBlob.type.includes("webm") ? "webm" : "mp4";
+                const filename = `Locket_Gold_${Date.now()}.${ext}`;
                 triggerDownload(compressedBlob, filename);
             });
         }
@@ -808,7 +828,7 @@
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
             }, 1000);
-            showToast("Đang tải tệp video xuống máy!");
+            showToast("Đã tải!");
         }
 
         // Tự động mở Deep Link nếu có tham số ?open=...
