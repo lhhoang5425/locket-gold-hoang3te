@@ -1,5 +1,5 @@
 /***********************************************
-> deleteHeader by duyvinh09
+// deleteHeader by @lhhoang5425 | Telegram: @hoang3te
 ***********************************************/	
 
 const version = 'V1.0.2';
