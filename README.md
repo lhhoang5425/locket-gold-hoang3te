@@ -15,3 +15,39 @@
 > [!WARNING]
 > **Tuyên bố miễn trừ trách nhiệm (Disclaimer):**  
 > Dự án được phát triển phục vụ mục đích nghiên cứu kỹ thuật, học tập cá nhân và phân tích luồng mạng (Network Traffic Analysis). Nghiêm cấm mọi hình thức khai thác thương mại hóa. Cre : Duy Vinh
+
+## Cấu trúc
+
+| Đường dẫn | Nội dung |
+| --- | --- |
+| `index.html` | Web Hub (GitHub Pages) |
+| `Config/Locket_Zekas.conf` / `.sgmodule` | Gói Locket Gold gọn (mặc định) |
+| `Config/nocket-gay.conf` / `.sgmodule` | Gói All-in-One (Locket + YouTube, Spotify, VSCO…) |
+| `Locket/LocketGold.mobileconfig` | Hồ sơ DNS chống thu hồi |
+| `js/Locket/` | Script RevenueCat + Remote Config |
+| `version.json` | Phiên bản hub và thông tin IPA phát hành |
+
+## Nguồn tải
+
+Web Hub hỗ trợ 2 nguồn, chọn bằng nút **GitHub / jsDelivr**:
+
+- GitHub: `https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main`
+- jsDelivr: `https://cdn.jsdelivr.net/gh/lhhoang5425/nocket-gay-hoang3te@main`
+
+## Cập nhật & phát hành
+
+1. Sửa nội dung → tăng `APP_VERSION` trong `index.html` và `version` trong `version.json`.
+2. Push lên `main`: GitHub Pages (deploy từ branch) tự cập nhật, workflow `Validate` kiểm tra JS/JSON/plist và file được tham chiếu.
+3. Khi có IPA: điền object `ipa` vào `version.json` (Card 5 sẽ tự hiện):
+
+```json
+{
+  "ipa": {
+    "version": "1.0.0",
+    "url": "https://github.com/lhhoang5425/nocket-gay-hoang3te/releases/download/v1.0.0/Locket-Zekas.ipa",
+    "size": "48 MB",
+    "min_ios": "15.0",
+    "sha256": "..."
+  }
+}
+```

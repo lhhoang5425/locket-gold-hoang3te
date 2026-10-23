@@ -1,0 +1,73 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Check JS syntax
+        run: |
+          set -e
+          while IFS= read -r file; do
+            node --check "$file"
+          done < <(find js -name '*.js' -type f)
+
+      - name: Validate JSON and plist
+        run: |
+          python3 <<'PY'
+          import glob
+          import json
+          import plistlib
+
+          with open("version.json", encoding="utf-8") as fh:
+              release = json.load(fh)
+
+          for path in glob.glob("*.mobileconfig") + glob.glob("Locket/*.mobileconfig"):
+              with open(path, "rb") as fh:
+                  plistlib.load(fh)
+              print(f"plist ok: {path}")
+
+          import pathlib
+          import re
+
+          html = pathlib.Path("index.html").read_text(encoding="utf-8")
+          match = re.search(r'const APP_VERSION = "([^"]+)"', html)
+          if not match:
+              raise SystemExit("APP_VERSION not found in index.html")
+          if match.group(1) != release.get("version"):
+              raise SystemExit(
+                  f"Version mismatch: index={match.group(1)} version.json={release.get('version')}"
+              )
+
+          print(f"versions ok: {release.get('version')}")
+          PY
+
+      - name: Validate referenced static files
+        run: |
+          python3 <<'PY'
+          import pathlib
+          import re
+          import sys
+
+          html = pathlib.Path("index.html").read_text(encoding="utf-8")
+          refs = set(re.findall(r'(?:Config|Locket)/[\w.-]+', html))
+          missing = sorted(p for p in refs if not pathlib.Path(p).exists())
+
+          if missing:
+              sys.exit("Missing referenced files: " + ", ".join(missing))
+
+          print("Referenced static files ok: " + str(len(refs)))
+          PY

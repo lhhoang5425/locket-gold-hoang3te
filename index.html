@@ -149,6 +149,36 @@
             color: var(--off-white);
             border-color: var(--charcoal);
         }
+
+        /* Segmented control (profile / mirror) */
+        .seg-group {
+            display: inline-flex;
+            padding: 3px;
+            border-radius: 9999px;
+            background-color: var(--charcoal-04);
+            border: 1px solid var(--border-cream);
+            gap: 2px;
+        }
+
+        .seg-btn {
+            padding: 5px 13px;
+            border-radius: 9999px;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--muted-gray);
+            transition: background-color 0.15s ease, color 0.15s ease;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .seg-btn:hover {
+            color: var(--charcoal);
+        }
+
+        .seg-btn.active {
+            background-color: var(--charcoal);
+            color: var(--off-white);
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between py-10 px-4 sm:px-6 relative overflow-x-hidden">
@@ -181,7 +211,31 @@
             <h1 class="text-3xl sm:text-4xl text-[#1c1c1c]">
                 Zekas VIP Hub
             </h1>
+
+            <p id="profile-note" class="text-xs text-[#5f5f5d] mt-2 max-w-[340px]">
+                Gói Locket Gold gọn nhẹ – chỉ can thiệp Locket.
+            </p>
+
+            <div class="mt-4 flex flex-col items-center gap-2">
+                <div class="seg-group" id="profile-switch" role="tablist" aria-label="Chọn gói cấu hình">
+                    <button type="button" class="seg-btn active" data-profile="locket">Locket Gold</button>
+                    <button type="button" class="seg-btn" data-profile="allinone">All-in-One</button>
+                </div>
+                <div class="seg-group" id="mirror-switch" role="tablist" aria-label="Chọn nguồn tải">
+                    <button type="button" class="seg-btn active" data-mirror="github">GitHub</button>
+                    <button type="button" class="seg-btn" data-mirror="jsdelivr">jsDelivr</button>
+                </div>
+            </div>
         </header>
+
+        <!-- Banner cập nhật (chỉ hiện khi version.json mới hơn) -->
+        <div id="update-banner" class="hidden mb-4 p-3.5 rounded-xl border border-[#1c1c1c] bg-[#1c1c1c] text-[#fcfbf8] text-xs flex items-start gap-2.5">
+            <i class="fa-solid fa-arrow-up-right-from-square mt-0.5"></i>
+            <div class="flex-1">
+                <p id="update-title" class="font-semibold mb-0.5">Đã có bản cập nhật mới</p>
+                <p id="update-notes" class="text-[rgba(252,251,248,0.75)]"></p>
+            </div>
+        </div>
 
         <!-- Action Cards -->
         <div class="space-y-4">
@@ -195,15 +249,15 @@
                     <h2 class="text-[18px] text-[#1c1c1c]">Cấu hình</h2>
                 </div>
 
-                <a id="btn-conf-open" href="shadowrocket://config/add/https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/Config/nocket-gay.conf"
+                <a id="btn-conf-open" href="#"
                    class="btn-dark mb-3">
                     <i class="fa-solid fa-download text-sm"></i>
                     <span>Mở & Cài Cấu hình (.conf)</span>
                 </a>
 
                 <div class="raw-link-box">
-                    <span class="text-xs text-[#5f5f5d] font-mono truncate select-all">https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/Config/nocket-gay.conf</span>
-                    <button onclick="copyLink('https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/Config/nocket-gay.conf')"
+                    <span id="conf-link-text" class="text-xs text-[#5f5f5d] font-mono truncate select-all"></span>
+                    <button onclick="copyCurrent('conf')"
                             class="btn-ghost shrink-0" title="Bấm để copy">
                         <i class="fa-regular fa-copy"></i>
                         <span>Sao chép</span>
@@ -220,15 +274,15 @@
                     <h2 class="text-[18px] text-[#1c1c1c]">Mô-đun</h2>
                 </div>
 
-                <a id="btn-module-open" href="shadowrocket://install?module=https%3A%2F%2Fraw.githubusercontent.com%2Flhhoang5425%2Fnocket-gay-hoang3te%2Fmain%2FConfig%2Fnocket-gay.sgmodule"
+                <a id="btn-module-open" href="#"
                    class="btn-dark mb-3">
                     <i class="fa-solid fa-puzzle-piece text-sm"></i>
                     <span>Mở & Cài Mô-đun (.sgmodule)</span>
                 </a>
 
                 <div class="raw-link-box">
-                    <span class="text-xs text-[#5f5f5d] font-mono truncate select-all">https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/Config/nocket-gay.sgmodule</span>
-                    <button onclick="copyLink('https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/Config/nocket-gay.sgmodule')"
+                    <span id="module-link-text" class="text-xs text-[#5f5f5d] font-mono truncate select-all"></span>
+                    <button onclick="copyCurrent('module')"
                             class="btn-ghost shrink-0" title="Bấm để copy">
                         <i class="fa-regular fa-copy"></i>
                         <span>Sao chép</span>
@@ -246,7 +300,7 @@
                 </div>
 
                 <a id="btn-dns-install"
-                   href="data:application/x-apple-aspen-config;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHBsaXN0IFBVQkxJQyAiLS8vQXBwbGUvL0RURCBQTElTVCAxLjAvL0VOIiAiaHR0cDovL3d3dy5hcHBsZS5jb20vRFREcy9Qcm9wZXJ0eUxpc3QtMS4wLmR0ZCI+CjxwbGlzdCB2ZXJzaW9uPSIxLjAiPgo8ZGljdD4KICAgIDxrZXk+UGF5bG9hZERpc3BsYXlOYW1lPC9rZXk+CiAgICA8c3RyaW5nPkxvY2tldCBHb2xkIPCfkpsgKFpla2FzIERldik8L3N0cmluZz4KCiAgICA8a2V5PlBheWxvYWREZXNjcmlwdGlvbjwva2V5PgogICAgPHN0cmluZz5I4buTIHPGoSBj4bqldSBow6xuaCBWSVAgY2jhurduIHRodSBo4buTaSBMb2NrZXQgR29sZCB2xKluaCB2aeG7hW4uJiMxMDtAemVrYXM8L3N0cmluZz4KCiAgICA8a2V5PlBheWxvYWRJZGVudGlmaWVyPC9rZXk+CiAgICA8c3RyaW5nPmNvbS56ZWthcy5sb2NrZXRnb2xkLnByb2ZpbGU8L3N0cmluZz4KCiAgICA8a2V5PlBheWxvYWRTY29wZTwva2V5PgogICAgPHN0cmluZz5TeXN0ZW08L3N0cmluZz4KCiAgICA8a2V5PlBheWxvYWRUeXBlPC9rZXk+CiAgICA8c3RyaW5nPkNvbmZpZ3VyYXRpb248L3N0cmluZz4KCiAgICA8a2V5PlBheWxvYWRVVUlEPC9rZXk+CiAgICA8c3RyaW5nPjVDNjVDMjkxLTNGM0MtNDQ5OS04OTg1LTEzQjk1QjgzREFEQjwvc3RyaW5nPgoKICAgIDxrZXk+UGF5bG9hZFZlcnNpb248L2tleT4KICAgIDxpbnRlZ2VyPjE8L2ludGVnZXI+CgogICAgPGtleT5QYXlsb2FkT3JnYW5pemF0aW9uPC9rZXk+CiAgICA8c3RyaW5nPlpla2FzIERldjwvc3RyaW5nPgoKICAgIDxrZXk+UGF5bG9hZENvbnRlbnQ8L2tleT4KICAgIDxhcnJheT4KICAgICAgICA8ZGljdD4KICAgICAgICAgICAgPGtleT5ETlNTZXR0aW5nczwva2V5PgogICAgICAgICAgICA8ZGljdD4KICAgICAgICAgICAgICAgIDxrZXk+RE5TUHJvdG9jb2w8L2tleT4KICAgICAgICAgICAgICAgIDxzdHJpbmc+SFRUUFM8L3N0cmluZz4KCiAgICAgICAgICAgICAgICA8a2V5PlNlcnZlclVSTDwva2V5PgogICAgICAgICAgICAgICAgPHN0cmluZz5odHRwczovL215LnVibG9ja2Rucy5jb20vejQ1MWFrOTU8L3N0cmluZz4KICAgICAgICAgICAgPC9kaWN0PgoKICAgICAgICAgICAgPGtleT5PbkRlbWFuZFJ1bGVzPC9rZXk+CiAgICAgICAgICAgIDxhcnJheT4KICAgICAgICAgICAgICAgIDxkaWN0PgogICAgICAgICAgICAgICAgICAgIDxrZXk+QWN0aW9uPC9rZXk+CiAgICAgICAgICAgICAgICAgICAgPHN0cmluZz5Db25uZWN0PC9zdHJpbmc+CiAgICAgICAgICAgICAgICA8L2RpY3Q+CiAgICAgICAgICAgIDwvYXJyYXk+CgogICAgICAgICAgICA8a2V5PlBheWxvYWRUeXBlPC9rZXk+CiAgICAgICAgICAgIDxzdHJpbmc+Y29tLmFwcGxlLmRuc1NldHRpbmdzLm1hbmFnZWQ8L3N0cmluZz4KCiAgICAgICAgICAgIDxrZXk+UGF5bG9hZElkZW50aWZpZXI8L2tleT4KICAgICAgICAgICAgPHN0cmluZz5jb20uemVrYXMubG9ja2V0Z29sZC5kbnM8L3N0cmluZz4KCiAgICAgICAgICAgIDxrZXk+UGF5bG9hZFVVSUQ8L2tleT4KICAgICAgICAgICAgPHN0cmluZz5EOUQ0NTIxRi03NUJDLTRGQzUtQkVDQy0yNkQyNkE1MDgxNTA8L3N0cmluZz4KCiAgICAgICAgICAgIDxrZXk+UGF5bG9hZERpc3BsYXlOYW1lPC9rZXk+CiAgICA8c3RyaW5nPkxvY2tldCBHb2xkIEROUyAoWmVrYXMpPC9zdHJpbmc+CgogICAgPGtleT5QYXlsb2FkT3JnYW5pemF0aW9uPC9rZXk+CiAgICA8c3RyaW5nPlpla2FzIERldjwvc3RyaW5nPgoKICAgIDxrZXk+UGF5bG9hZFZlcnNpb248L2tleT4KICAgIDxpbnRlZ2VyPjE8L2ludGVnZXI+CgogICAgPC9kaWN0PgogICAgPC9hcnJheT4KPC9kaWN0Pgo8L3BsaXN0Pgo="
+                   href="#"
                    download="LocketGold.mobileconfig"
                    onclick="handleDNSClick(event)"
                    class="btn-dark mb-3">
@@ -271,8 +325,8 @@
                 </div>
 
                 <div class="raw-link-box">
-                    <span class="text-xs text-[#5f5f5d] font-mono truncate select-all">https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/Locket/LocketGold.mobileconfig</span>
-                    <button onclick="copyLink('https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/Locket/LocketGold.mobileconfig')"
+                    <span id="dns-link-text" class="text-xs text-[#5f5f5d] font-mono truncate select-all"></span>
+                    <button onclick="copyCurrent('mobileconfig')"
                             class="btn-ghost shrink-0" title="Bấm để copy">
                         <i class="fa-regular fa-copy"></i>
                         <span>Sao chép</span>
@@ -360,15 +414,52 @@
                 </div>
             </section>
 
+            <!-- 5. IPA ZEKAS MOD (chỉ hiện khi version.json có bản phát hành) -->
+            <section id="ipa-card" class="lovable-card p-5 hidden">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 rounded-full border border-[#eceae4] text-[#1c1c1c] text-xs font-semibold flex items-center justify-center shrink-0">
+                        5
+                    </div>
+                    <h2 class="text-[18px] text-[#1c1c1c]">IPA Zekas Mod</h2>
+                    <span id="ipa-version-badge" class="ml-auto text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[#1c1c1c] text-[#fcfbf8]"></span>
+                </div>
+
+                <a id="btn-ipa-download" href="#" class="btn-dark mb-3">
+                    <i class="fa-brands fa-apple text-base"></i>
+                    <span>Tải IPA (.ipa)</span>
+                </a>
+
+                <div class="raw-link-box mb-3">
+                    <span id="ipa-link-text" class="text-xs text-[#5f5f5d] font-mono truncate select-all"></span>
+                    <button onclick="copyCurrent('ipa')"
+                            class="btn-ghost shrink-0" title="Bấm để copy">
+                        <i class="fa-regular fa-copy"></i>
+                        <span>Sao chép</span>
+                    </button>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-white border border-[#eceae4] text-xs text-[#5f5f5d] space-y-2">
+                    <p><b class="text-[#1c1c1c]">iOS ≤ 17.0:</b> cài bằng TrollStore (không hết hạn, không cần bật Shadowrocket).</p>
+                    <p><b class="text-[#1c1c1c]">iOS 17.1 – 18:</b> cài bằng SideStore/Esign + chứng chỉ. Cert miễn phí hết hạn sau 7 ngày, nên dùng cert trả phí để giữ lâu.</p>
+                    <p><b class="text-[#1c1c1c]">Lưu ý:</b> iOS 17.3.1 <b>không</b> hỗ trợ TrollStore — cần SideStore/cert.</p>
+                </div>
+
+                <div id="ipa-meta" class="mt-3 text-[11px] text-[#5f5f5d] font-mono break-all"></div>
+            </section>
+
         </div>
 
         <!-- Hướng dẫn 3 bước ngắn gọn, clean nhất (Làm 1, 2 rồi 3 là Done) -->
         <section class="mt-8 lovable-card p-5 bg-[rgba(28,28,28,0.02)]">
-            <h3 class="text-sm font-semibold text-[#1c1c1c] mb-3 flex items-center gap-2">
+            <h3 class="text-sm font-semibold text-[#1c1c1c] mb-2 flex items-center gap-2">
                 <i class="fa-solid fa-list-check text-xs"></i>
                 <span>Hướng dẫn cài đặt (3 bước là Xong)</span>
             </h3>
-            
+
+            <p class="text-[12px] text-[#5f5f5d] mb-3">
+                Chọn gói <b class="text-[#1c1c1c]">Locket Gold</b> hoặc <b class="text-[#1c1c1c]">All-in-One</b> và nguồn tải ở đầu trang trước khi cài.
+            </p>
+
             <ol class="space-y-2.5 text-[13px] text-[#5f5f5d]">
                 <li class="flex items-start gap-2.5">
                     <span class="font-bold text-[#1c1c1c] shrink-0">1.</span>
@@ -395,11 +486,169 @@
             <a href="https://t.me/hoang3te" class="hover:text-[#1c1c1c] transition-colors underline decoration-[#eceae4] underline-offset-4">Telegram: @hoang3te</a>
             <span>•</span>
             <span>Zekas Dev</span>
+            <span>•</span>
+            <span id="app-version">v1.1.0</span>
         </div>
     </footer>
 
     <!-- Script Tự Động Kích Hoạt & Sao Chép -->
     <script>
+        // ==========================================
+        // CẤU HÌNH GÓI / NGUỒN TẢI / PHIÊN BẢN
+        // ==========================================
+        const APP_VERSION = "1.1.0";
+        const REPO_SLUG = "lhhoang5425/nocket-gay-hoang3te";
+        const REPO_BRANCH = "main";
+        const MIRRORS = {
+            github: `https://raw.githubusercontent.com/${REPO_SLUG}/${REPO_BRANCH}`,
+            jsdelivr: `https://cdn.jsdelivr.net/gh/${REPO_SLUG}@${REPO_BRANCH}`
+        };
+        const PROFILES = {
+            locket: {
+                label: "Locket Gold",
+                note: "Gói Locket Gold gọn nhẹ – chỉ can thiệp Locket.",
+                files: {
+                    conf: "Config/Locket_Zekas.conf",
+                    module: "Config/Locket_Zekas.sgmodule",
+                    mobileconfig: "Locket/LocketGold.mobileconfig"
+                }
+            },
+            allinone: {
+                label: "All-in-One",
+                note: "Gói tổng hợp – Locket + YouTube, Spotify, VSCO, PicsArt…",
+                files: {
+                    conf: "Config/nocket-gay.conf",
+                    module: "Config/nocket-gay.sgmodule",
+                    mobileconfig: "Locket/LocketGold.mobileconfig"
+                }
+            }
+        };
+
+        let currentProfile = "locket";
+        let currentMirror = "github";
+        let releaseInfo = null;
+
+        try {
+            const savedProfile = localStorage.getItem("zekas_profile");
+            if (savedProfile && PROFILES[savedProfile]) currentProfile = savedProfile;
+            const savedMirror = localStorage.getItem("zekas_mirror");
+            if (savedMirror && MIRRORS[savedMirror]) currentMirror = savedMirror;
+        } catch (storageErr) {
+            // Chế độ riêng tư: dùng mặc định
+        }
+
+        function getFileUrl(kind) {
+            const path = PROFILES[currentProfile].files[kind];
+            return `${MIRRORS[currentMirror]}/${path}`;
+        }
+
+        function getActionUrl(kind) {
+            const url = getFileUrl(kind);
+            if (kind === "conf") return `shadowrocket://config/add/${url}`;
+            if (kind === "module") return `shadowrocket://install?module=${encodeURIComponent(url)}`;
+            return url;
+        }
+
+        function setSegActive(containerId, dataKey, value) {
+            document.querySelectorAll(`#${containerId} .seg-btn`).forEach(btn => {
+                btn.classList.toggle("active", btn.dataset[dataKey] === value);
+            });
+        }
+
+        function renderLinks() {
+            const confUrl = getFileUrl("conf");
+            const moduleUrl = getFileUrl("module");
+            const dnsUrl = getFileUrl("mobileconfig");
+
+            const btnConf = document.getElementById("btn-conf-open");
+            if (btnConf) btnConf.href = getActionUrl("conf");
+            const btnModule = document.getElementById("btn-module-open");
+            if (btnModule) btnModule.href = getActionUrl("module");
+
+            const confText = document.getElementById("conf-link-text");
+            if (confText) confText.textContent = confUrl;
+            const moduleText = document.getElementById("module-link-text");
+            if (moduleText) moduleText.textContent = moduleUrl;
+            const dnsText = document.getElementById("dns-link-text");
+            if (dnsText) dnsText.textContent = dnsUrl;
+
+            const note = document.getElementById("profile-note");
+            if (note) note.textContent = PROFILES[currentProfile].note;
+
+            setSegActive("profile-switch", "profile", currentProfile);
+            setSegActive("mirror-switch", "mirror", currentMirror);
+        }
+
+        function copyCurrent(kind) {
+            if (kind === "ipa") {
+                copyLink(releaseInfo && releaseInfo.ipa ? releaseInfo.ipa.url : "");
+                return;
+            }
+            copyLink(getFileUrl(kind));
+        }
+
+        function renderIpa(ipa) {
+            if (!ipa || !ipa.url) return;
+            const card = document.getElementById("ipa-card");
+            if (!card) return;
+            card.classList.remove("hidden");
+
+            const download = document.getElementById("btn-ipa-download");
+            if (download) download.href = ipa.url;
+            const linkText = document.getElementById("ipa-link-text");
+            if (linkText) linkText.textContent = ipa.url;
+            const badge = document.getElementById("ipa-version-badge");
+            if (badge) badge.textContent = ipa.version || "IPA";
+
+            const meta = [];
+            if (ipa.size) meta.push(`Size: ${ipa.size}`);
+            if (ipa.min_ios) meta.push(`iOS ${ipa.min_ios}+`);
+            if (ipa.sha256) meta.push(`SHA256: ${ipa.sha256}`);
+            const metaBox = document.getElementById("ipa-meta");
+            if (metaBox) metaBox.textContent = meta.join(" • ");
+        }
+
+        async function loadVersionInfo() {
+            const sources = [MIRRORS.github, MIRRORS.jsdelivr];
+            for (const base of sources) {
+                try {
+                    const res = await fetch(`${base}/version.json?t=${Date.now()}`, { cache: "no-store" });
+                    if (!res.ok) continue;
+                    const info = await res.json();
+                    releaseInfo = info;
+                    renderIpa(info.ipa);
+
+                    if (info.version && info.version !== APP_VERSION) {
+                        const banner = document.getElementById("update-banner");
+                        const title = document.getElementById("update-title");
+                        const notes = document.getElementById("update-notes");
+                        if (title) title.textContent = `Đã có bản cập nhật v${info.version}`;
+                        if (notes) notes.textContent = info.notes || "";
+                        if (banner) banner.classList.remove("hidden");
+                    }
+                    return;
+                } catch (fetchErr) {
+                    // thử nguồn kế tiếp
+                }
+            }
+        }
+
+        document.querySelectorAll("#profile-switch .seg-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                currentProfile = btn.dataset.profile;
+                try { localStorage.setItem("zekas_profile", currentProfile); } catch (e) {}
+                renderLinks();
+            });
+        });
+
+        document.querySelectorAll("#mirror-switch .seg-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                currentMirror = btn.dataset.mirror;
+                try { localStorage.setItem("zekas_mirror", currentMirror); } catch (e) {}
+                renderLinks();
+            });
+        });
+
         function copyLink(url) {
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(url).then(() => {
@@ -466,7 +715,7 @@
                 document.querySelectorAll(".size-preset-btn").forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
                 selectedTargetMB = parseFloat(btn.dataset.size);
-                targetBadge.textContent = `${selectedTargetMB.toFixed(1)} MB (${btn.querySelector("span:last-child").textContent})`;
+                targetBadge.textContent = `${selectedTargetMB.toFixed(1)} MB`;
             });
         });
 
@@ -907,6 +1156,34 @@
 </dict>
 </plist>`;
 
+        function xmlToDataUri(xml) {
+            const bytes = new TextEncoder().encode(xml);
+            let binary = "";
+            for (let i = 0; i < bytes.length; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return "data:application/x-apple-aspen-config;base64," + btoa(binary);
+        }
+
+        function setDnsHref(xml) {
+            const btn = document.getElementById("btn-dns-install");
+            if (btn) btn.href = xmlToDataUri(xml);
+        }
+
+        // Luôn có hồ sơ dự phòng; khi online thì đồng bộ lại từ file .mobileconfig
+        async function syncDnsProfile() {
+            setDnsHref(DNS_PROFILE_XML);
+            try {
+                const res = await fetch(getFileUrl("mobileconfig"), { cache: "no-cache" });
+                if (!res.ok) return;
+                const xml = await res.text();
+                if (!xml.includes("<plist") || !xml.includes("PayloadContent")) return;
+                setDnsHref(xml);
+            } catch (fetchErr) {
+                // giữ hồ sơ dự phòng
+            }
+        }
+
         function handleDNSClick(e) {
             const ua = navigator.userAgent;
             const isInApp = /FBAN|FBAV|Instagram|Line|Twitter|MicroMessenger|Zalo|Snapchat|TikTok/i.test(ua);
@@ -925,16 +1202,27 @@
             }
         }
 
-        // Tự động mở Deep Link nếu có tham số ?open=...
-        document.addEventListener("DOMContentLoaded", function() {
+        // Khởi tạo link + tự động mở Deep Link nếu có tham số ?open=...
+        document.addEventListener("DOMContentLoaded", async function() {
+            renderLinks();
+            syncDnsProfile();
+
             const params = new URLSearchParams(window.location.search);
             const action = params.get("open");
-            if (action === "conf") {
-                window.location.href = "shadowrocket://config/add/https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main/Config/nocket-gay.conf";
-            } else if (action === "module") {
-                window.location.href = "shadowrocket://install?module=https%3A%2F%2Fraw.githubusercontent.com%2Flhhoang5425%2Fnocket-gay-hoang3te%2Fmain%2FConfig%2Fnocket-gay.sgmodule";
-            } else if (action === "dns") {
+
+            if (action === "conf" || action === "module") {
+                window.location.href = getActionUrl(action);
+                return;
+            }
+            if (action === "dns") {
                 installDNSProfile();
+                return;
+            }
+
+            await loadVersionInfo();
+
+            if (action === "ipa" && releaseInfo && releaseInfo.ipa && releaseInfo.ipa.url) {
+                window.location.href = releaseInfo.ipa.url;
             }
         });
     </script>
