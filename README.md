@@ -14,15 +14,14 @@
 
 > [!WARNING]
 > **Tuyên bố miễn trừ trách nhiệm (Disclaimer):**  
-> Dự án được phát triển phục vụ mục đích nghiên cứu kỹ thuật, học tập cá nhân và phân tích luồng mạng (Network Traffic Analysis). Nghiêm cấm mọi hình thức khai thác thương mại hóa. Cre : Duy Vinh
+> Dự án được phát triển phục vụ mục đích nghiên cứu kỹ thuật, học tập cá nhân và phân tích luồng mạng (Network Traffic Analysis). Nghiêm cấm mọi hình thức khai thác thương mại hóa. Cre : Zekas Dev
 
 ## Cấu trúc
 
 | Đường dẫn | Nội dung |
 | --- | --- |
 | `index.html` | Web Hub (GitHub Pages) |
-| `Config/Locket_Zekas.conf` / `.sgmodule` | Gói Locket Gold gọn (mặc định) |
-| `Config/nocket-gay.conf` / `.sgmodule` | Gói All-in-One (Locket + YouTube, Spotify, VSCO…) |
+| `Config/Locket_Zekas.conf` / `.sgmodule` | Cấu hình + mô-đun Locket Gold Zekas |
 | `Locket/LocketGold.mobileconfig` | Hồ sơ DNS chống thu hồi |
 | `js/Locket/` | Script RevenueCat + Remote Config |
 | `version.json` | Phiên bản hub và thông tin IPA phát hành |
@@ -33,6 +32,8 @@ Web Hub hỗ trợ 2 nguồn, chọn bằng nút **GitHub / jsDelivr**:
 
 - GitHub: `https://raw.githubusercontent.com/lhhoang5425/nocket-gay-hoang3te/main`
 - jsDelivr: `https://cdn.jsdelivr.net/gh/lhhoang5425/nocket-gay-hoang3te@main`
+
+**jsDelivr** là CDN phản chiếu GitHub: giúp tải nhanh và ổn định hơn khi `raw.githubusercontent.com` bị chặn, nhưng có thể cache chậm tới ~12 giờ. Mặc định dùng GitHub để nhận cập nhật tức thì.
 
 ## Cập nhật & phát hành
 

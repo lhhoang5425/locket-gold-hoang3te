@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -212,15 +212,11 @@
                 Zekas VIP Hub
             </h1>
 
-            <p id="profile-note" class="text-xs text-[#5f5f5d] mt-2 max-w-[340px]">
-                Gói Locket Gold gọn nhẹ – chỉ can thiệp Locket.
+            <p class="text-xs text-[#5f5f5d] mt-2 max-w-[340px]">
+                Cấu hình Locket Gold by Zekas Dev.
             </p>
 
             <div class="mt-4 flex flex-col items-center gap-2">
-                <div class="seg-group" id="profile-switch" role="tablist" aria-label="Chọn gói cấu hình">
-                    <button type="button" class="seg-btn active" data-profile="locket">Locket Gold</button>
-                    <button type="button" class="seg-btn" data-profile="allinone">All-in-One</button>
-                </div>
                 <div class="seg-group" id="mirror-switch" role="tablist" aria-label="Chọn nguồn tải">
                     <button type="button" class="seg-btn active" data-mirror="github">GitHub</button>
                     <button type="button" class="seg-btn" data-mirror="jsdelivr">jsDelivr</button>
@@ -246,7 +242,7 @@
                     <div class="w-8 h-8 rounded-full bg-[#1c1c1c] text-[#fcfbf8] text-xs font-semibold flex items-center justify-center shrink-0">
                         1
                     </div>
-                    <h2 class="text-[18px] text-[#1c1c1c]">Cấu hình</h2>
+                    <h2 class="text-[18px] text-[#1c1c1c]">Cấu hình Locket Gold</h2>
                 </div>
 
                 <a id="btn-conf-open" href="#"
@@ -271,7 +267,7 @@
                     <div class="w-8 h-8 rounded-full border border-[#eceae4] text-[#1c1c1c] text-xs font-semibold flex items-center justify-center shrink-0">
                         2
                     </div>
-                    <h2 class="text-[18px] text-[#1c1c1c]">Mô-đun</h2>
+                    <h2 class="text-[18px] text-[#1c1c1c]">Mô-đun Locket Gold</h2>
                 </div>
 
                 <a id="btn-module-open" href="#"
@@ -457,7 +453,7 @@
             </h3>
 
             <p class="text-[12px] text-[#5f5f5d] mb-3">
-                Chọn gói <b class="text-[#1c1c1c]">Locket Gold</b> hoặc <b class="text-[#1c1c1c]">All-in-One</b> và nguồn tải ở đầu trang trước khi cài.
+                Chọn nguồn tải <b class="text-[#1c1c1c]">GitHub</b> hoặc <b class="text-[#1c1c1c]">jsDelivr</b> ở đầu trang trước khi cài.
             </p>
 
             <ol class="space-y-2.5 text-[13px] text-[#5f5f5d]">
@@ -487,7 +483,7 @@
             <span>•</span>
             <span>Zekas Dev</span>
             <span>•</span>
-            <span id="app-version">v1.1.0</span>
+            <span id="app-version">v1.1.1</span>
         </div>
     </footer>
 
@@ -496,41 +492,23 @@
         // ==========================================
         // CẤU HÌNH GÓI / NGUỒN TẢI / PHIÊN BẢN
         // ==========================================
-        const APP_VERSION = "1.1.0";
+        const APP_VERSION = "1.1.1";
         const REPO_SLUG = "lhhoang5425/nocket-gay-hoang3te";
         const REPO_BRANCH = "main";
         const MIRRORS = {
             github: `https://raw.githubusercontent.com/${REPO_SLUG}/${REPO_BRANCH}`,
             jsdelivr: `https://cdn.jsdelivr.net/gh/${REPO_SLUG}@${REPO_BRANCH}`
         };
-        const PROFILES = {
-            locket: {
-                label: "Locket Gold",
-                note: "Gói Locket Gold gọn nhẹ – chỉ can thiệp Locket.",
-                files: {
-                    conf: "Config/Locket_Zekas.conf",
-                    module: "Config/Locket_Zekas.sgmodule",
-                    mobileconfig: "Locket/LocketGold.mobileconfig"
-                }
-            },
-            allinone: {
-                label: "All-in-One",
-                note: "Gói tổng hợp – Locket + YouTube, Spotify, VSCO, PicsArt…",
-                files: {
-                    conf: "Config/nocket-gay.conf",
-                    module: "Config/nocket-gay.sgmodule",
-                    mobileconfig: "Locket/LocketGold.mobileconfig"
-                }
-            }
+        const FILES = {
+            conf: "Config/Locket_Zekas.conf",
+            module: "Config/Locket_Zekas.sgmodule",
+            mobileconfig: "Locket/LocketGold.mobileconfig"
         };
 
-        let currentProfile = "locket";
         let currentMirror = "github";
         let releaseInfo = null;
 
         try {
-            const savedProfile = localStorage.getItem("zekas_profile");
-            if (savedProfile && PROFILES[savedProfile]) currentProfile = savedProfile;
             const savedMirror = localStorage.getItem("zekas_mirror");
             if (savedMirror && MIRRORS[savedMirror]) currentMirror = savedMirror;
         } catch (storageErr) {
@@ -538,8 +516,7 @@
         }
 
         function getFileUrl(kind) {
-            const path = PROFILES[currentProfile].files[kind];
-            return `${MIRRORS[currentMirror]}/${path}`;
+            return `${MIRRORS[currentMirror]}/${FILES[kind]}`;
         }
 
         function getActionUrl(kind) {
@@ -572,10 +549,6 @@
             const dnsText = document.getElementById("dns-link-text");
             if (dnsText) dnsText.textContent = dnsUrl;
 
-            const note = document.getElementById("profile-note");
-            if (note) note.textContent = PROFILES[currentProfile].note;
-
-            setSegActive("profile-switch", "profile", currentProfile);
             setSegActive("mirror-switch", "mirror", currentMirror);
         }
 
@@ -632,14 +605,6 @@
                 }
             }
         }
-
-        document.querySelectorAll("#profile-switch .seg-btn").forEach(btn => {
-            btn.addEventListener("click", () => {
-                currentProfile = btn.dataset.profile;
-                try { localStorage.setItem("zekas_profile", currentProfile); } catch (e) {}
-                renderLinks();
-            });
-        });
 
         document.querySelectorAll("#mirror-switch .seg-btn").forEach(btn => {
             btn.addEventListener("click", () => {
