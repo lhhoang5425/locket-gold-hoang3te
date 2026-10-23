@@ -9,7 +9,7 @@
     <link rel="icon" href="https://i.pinimg.com/736x/d4/42/64/d4426485d809524bf737bab3964144ae.jpg" type="image/jpeg">
     <link rel="apple-touch-icon" href="https://i.pinimg.com/736x/d4/42/64/d4426485d809524bf737bab3964144ae.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fix-webm-duration/fix-webm-duration.js"></script>
+    <script src="js/fix-webm-duration.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -150,35 +150,6 @@
             border-color: var(--charcoal);
         }
 
-        /* Segmented control (profile / mirror) */
-        .seg-group {
-            display: inline-flex;
-            padding: 3px;
-            border-radius: 9999px;
-            background-color: var(--charcoal-04);
-            border: 1px solid var(--border-cream);
-            gap: 2px;
-        }
-
-        .seg-btn {
-            padding: 5px 13px;
-            border-radius: 9999px;
-            font-size: 11.5px;
-            font-weight: 600;
-            color: var(--muted-gray);
-            transition: background-color 0.15s ease, color 0.15s ease;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .seg-btn:hover {
-            color: var(--charcoal);
-        }
-
-        .seg-btn.active {
-            background-color: var(--charcoal);
-            color: var(--off-white);
-        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between py-10 px-4 sm:px-6 relative overflow-x-hidden">
@@ -215,13 +186,6 @@
             <p class="text-xs text-[#5f5f5d] mt-2 max-w-[340px]">
                 Cấu hình Locket Gold by Zekas Dev.
             </p>
-
-            <div class="mt-4 flex flex-col items-center gap-2">
-                <div class="seg-group" id="mirror-switch" role="tablist" aria-label="Chọn nguồn tải">
-                    <button type="button" class="seg-btn active" data-mirror="github">GitHub</button>
-                    <button type="button" class="seg-btn" data-mirror="jsdelivr">jsDelivr</button>
-                </div>
-            </div>
         </header>
 
         <!-- Banner cập nhật (chỉ hiện khi version.json mới hơn) -->
@@ -453,7 +417,7 @@
             </h3>
 
             <p class="text-[12px] text-[#5f5f5d] mb-3">
-                Chọn nguồn tải <b class="text-[#1c1c1c]">GitHub</b> hoặc <b class="text-[#1c1c1c]">jsDelivr</b> ở đầu trang trước khi cài.
+                Các nút bên dưới tải trực tiếp từ <b class="text-[#1c1c1c]">GitHub</b>.
             </p>
 
             <ol class="space-y-2.5 text-[13px] text-[#5f5f5d]">
@@ -483,7 +447,7 @@
             <span>•</span>
             <span>Zekas Dev</span>
             <span>•</span>
-            <span id="app-version">v1.1.1</span>
+            <span id="app-version">v1.1.2</span>
         </div>
     </footer>
 
@@ -492,31 +456,20 @@
         // ==========================================
         // CẤU HÌNH GÓI / NGUỒN TẢI / PHIÊN BẢN
         // ==========================================
-        const APP_VERSION = "1.1.1";
+        const APP_VERSION = "1.1.2";
         const REPO_SLUG = "lhhoang5425/nocket-gay-hoang3te";
         const REPO_BRANCH = "main";
-        const MIRRORS = {
-            github: `https://raw.githubusercontent.com/${REPO_SLUG}/${REPO_BRANCH}`,
-            jsdelivr: `https://cdn.jsdelivr.net/gh/${REPO_SLUG}@${REPO_BRANCH}`
-        };
+        const BASE_URL = `https://raw.githubusercontent.com/${REPO_SLUG}/${REPO_BRANCH}`;
         const FILES = {
             conf: "Config/Locket_Zekas.conf",
             module: "Config/Locket_Zekas.sgmodule",
             mobileconfig: "Locket/LocketGold.mobileconfig"
         };
 
-        let currentMirror = "github";
         let releaseInfo = null;
 
-        try {
-            const savedMirror = localStorage.getItem("zekas_mirror");
-            if (savedMirror && MIRRORS[savedMirror]) currentMirror = savedMirror;
-        } catch (storageErr) {
-            // Chế độ riêng tư: dùng mặc định
-        }
-
         function getFileUrl(kind) {
-            return `${MIRRORS[currentMirror]}/${FILES[kind]}`;
+            return `${BASE_URL}/${FILES[kind]}`;
         }
 
         function getActionUrl(kind) {
@@ -524,12 +477,6 @@
             if (kind === "conf") return `shadowrocket://config/add/${url}`;
             if (kind === "module") return `shadowrocket://install?module=${encodeURIComponent(url)}`;
             return url;
-        }
-
-        function setSegActive(containerId, dataKey, value) {
-            document.querySelectorAll(`#${containerId} .seg-btn`).forEach(btn => {
-                btn.classList.toggle("active", btn.dataset[dataKey] === value);
-            });
         }
 
         function renderLinks() {
@@ -548,8 +495,6 @@
             if (moduleText) moduleText.textContent = moduleUrl;
             const dnsText = document.getElementById("dns-link-text");
             if (dnsText) dnsText.textContent = dnsUrl;
-
-            setSegActive("mirror-switch", "mirror", currentMirror);
         }
 
         function copyCurrent(kind) {
@@ -582,37 +527,25 @@
         }
 
         async function loadVersionInfo() {
-            const sources = [MIRRORS.github, MIRRORS.jsdelivr];
-            for (const base of sources) {
-                try {
-                    const res = await fetch(`${base}/version.json?t=${Date.now()}`, { cache: "no-store" });
-                    if (!res.ok) continue;
-                    const info = await res.json();
-                    releaseInfo = info;
-                    renderIpa(info.ipa);
+            try {
+                const res = await fetch(`${BASE_URL}/version.json?t=${Date.now()}`, { cache: "no-store" });
+                if (!res.ok) return;
+                const info = await res.json();
+                releaseInfo = info;
+                renderIpa(info.ipa);
 
-                    if (info.version && info.version !== APP_VERSION) {
-                        const banner = document.getElementById("update-banner");
-                        const title = document.getElementById("update-title");
-                        const notes = document.getElementById("update-notes");
-                        if (title) title.textContent = `Đã có bản cập nhật v${info.version}`;
-                        if (notes) notes.textContent = info.notes || "";
-                        if (banner) banner.classList.remove("hidden");
-                    }
-                    return;
-                } catch (fetchErr) {
-                    // thử nguồn kế tiếp
+                if (info.version && info.version !== APP_VERSION) {
+                    const banner = document.getElementById("update-banner");
+                    const title = document.getElementById("update-title");
+                    const notes = document.getElementById("update-notes");
+                    if (title) title.textContent = `Đã có bản cập nhật v${info.version}`;
+                    if (notes) notes.textContent = info.notes || "";
+                    if (banner) banner.classList.remove("hidden");
                 }
+            } catch (fetchErr) {
+                // Không chặn trang nếu GitHub raw không truy cập được
             }
         }
-
-        document.querySelectorAll("#mirror-switch .seg-btn").forEach(btn => {
-            btn.addEventListener("click", () => {
-                currentMirror = btn.dataset.mirror;
-                try { localStorage.setItem("zekas_mirror", currentMirror); } catch (e) {}
-                renderLinks();
-            });
-        });
 
         function copyLink(url) {
             if (navigator.clipboard && window.isSecureContext) {
