@@ -32,7 +32,7 @@ jobs:
           import json
           import plistlib
 
-          with open("version.json", encoding="utf-8") as fh:
+          with open("version.json", encoding="utf-8-sig") as fh:
               release = json.load(fh)
 
           for path in glob.glob("*.mobileconfig") + glob.glob("Locket/*.mobileconfig"):
@@ -43,7 +43,7 @@ jobs:
           import pathlib
           import re
 
-          html = pathlib.Path("index.html").read_text(encoding="utf-8")
+          html = pathlib.Path("index.html").read_text(encoding="utf-8-sig")
           match = re.search(r'const APP_VERSION = "([^"]+)"', html)
           if not match:
               raise SystemExit("APP_VERSION not found in index.html")
@@ -62,7 +62,7 @@ jobs:
           import re
           import sys
 
-          html = pathlib.Path("index.html").read_text(encoding="utf-8")
+          html = pathlib.Path("index.html").read_text(encoding="utf-8-sig")
           refs = set(re.findall(r'(?:Config|Locket)/[\w.-]+', html))
           missing = sorted(p for p in refs if not pathlib.Path(p).exists())
 
