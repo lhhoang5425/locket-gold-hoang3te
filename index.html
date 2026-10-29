@@ -260,7 +260,7 @@
                 </div>
 
                 <a id="btn-dns-install"
-                   href="https://lhhoang5425.github.io/nocket-gay-hoang3te/Locket/LocketGold.mobileconfig"
+                   href="https://lhhoang5425.github.io/nocket-gay-hoang3te/Locket/LocketGold.mobileconfig?v=1.1.2"
                    onclick="handleDNSClick(event)"
                    class="btn-dark mb-3">
                     <i class="fa-brands fa-apple text-base"></i>
@@ -475,7 +475,8 @@
         const BASE_URL = `https://raw.githubusercontent.com/${REPO_SLUG}/${REPO_BRANCH}`;
         // Hồ sơ .mobileconfig PHẢI được tải qua GitHub Pages:
         // raw.githubusercontent.com trả text/plain + nosniff + CSP sandbox nên iOS không nhận.
-        const PAGES_URL = `https://lhhoang5425.github.io/${REPO_SLUG}`;
+        // URL Pages chỉ có TÊN DỰ ÁN, không có owner (owner sẽ thành 404).
+        const PAGES_URL = `https://lhhoang5425.github.io/${REPO_SLUG.split("/")[1]}`;
         const FILES = {
             conf: "Config/Locket_Zekas.conf",
             module: "Config/Locket_Zekas.sgmodule",
@@ -488,8 +489,16 @@
             return `${BASE_URL}/${FILES[kind]}`;
         }
 
+        // Base luôn có dấu "/" ở cuối; lấy theo nơi trang đang chạy để link không
+        // hỏng khi repo đổi tên hoặc gắn domain riêng.
+        function getSiteBaseUrl() {
+            if (!/^https?:$/.test(window.location.protocol)) return `${PAGES_URL}/`;
+            return window.location.origin + window.location.pathname.replace(/[^/]*$/, "");
+        }
+
         function getDownloadUrl(kind) {
-            return `${PAGES_URL}/${FILES[kind]}`;
+            // ?v= buộc Safari/Fastly bỏ qua bản cũ (kể cả trang 404 đã cache).
+            return `${getSiteBaseUrl()}${FILES[kind]}?v=${APP_VERSION}`;
         }
 
         function getActionUrl(kind) {
