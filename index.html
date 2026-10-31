@@ -6,8 +6,8 @@
     <title>Zekas VIP Hub</title>
     <meta name="description" content="Cài đặt nhanh Shadowrocket Cấu hình, Mô-đun và DNS chống thu hồi cho Locket Gold. Thiết kế tối giản theo Lovable Design.">
     <meta name="theme-color" content="#f7f4ed">
-    <link rel="icon" href="https://i.pinimg.com/736x/d4/42/64/d4426485d809524bf737bab3964144ae.jpg" type="image/jpeg">
-    <link rel="apple-touch-icon" href="https://i.pinimg.com/736x/d4/42/64/d4426485d809524bf737bab3964144ae.jpg">
+    <link rel="icon" href="assets/zekas-icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/zekas-icon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/fix-webm-duration.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -170,7 +170,7 @@
         <!-- Header -->
         <header class="text-center mb-8 pt-2 flex flex-col items-center">
             <!-- Logo Title -->
-            <img src="https://i.pinimg.com/736x/d4/42/64/d4426485d809524bf737bab3964144ae.jpg" 
+            <img src="assets/zekas-logo.png" 
                  alt="Zekas VIP Hub Logo" 
                  class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover shadow-sm border border-[#eceae4] mb-3 hover:scale-105 transition-transform duration-200">
 
@@ -280,20 +280,6 @@
                     <div class="flex items-start gap-2">
                         <span class="w-4 h-4 rounded-full bg-[#eceae4] text-[#1c1c1c] text-[10px] font-bold flex items-center justify-center shrink-0 mt-0.5">3</span>
                         <span>Bấm <b>Cài đặt</b> ở góc trên bên phải để kích hoạt</span>
-                    </div>
-                    <div class="pt-2 mt-2 border-t border-[#eceae4] space-y-1.5">
-                        <p class="flex items-start gap-2">
-                            <i class="fa-regular fa-clock shrink-0 mt-0.5"></i>
-                            <span><b>iOS 26 trở lên:</b> hồ sơ vừa tải sẽ <b>tự xóa sau 8 phút</b> nếu chưa cài ➔ vào <b>Cài đặt</b> cài ngay.</span>
-                        </p>
-                        <p class="flex items-start gap-2">
-                            <i class="fa-solid fa-shield-halved shrink-0 mt-0.5"></i>
-                            <span>Nếu bị chặn, tạm tắt <b>Bảo vệ thiết bị bị trộm</b> (Cài đặt ➔ Face ID và mật mã) rồi bật lại sau khi cài.</span>
-                        </p>
-                        <p class="flex items-start gap-2">
-                            <i class="fa-solid fa-circle-info shrink-0 mt-0.5"></i>
-                            <span>Chỉ tải được <b>1 hồ sơ chờ cài</b> một lần; xóa hồ sơ cũ đang chờ rồi bấm lại nút trên.</span>
-                        </p>
                     </div>
                 </div>
 
@@ -1041,7 +1027,7 @@
                 alert("⚠️ Bạn đang mở trang web trong ứng dụng (Zalo/Messenger/FB/TikTok...). Hãy bấm biểu tượng chia sẻ hoặc dấu 3 chấm (...) ➔ chọn 'Mở bằng Safari' để cài đặt hồ sơ trên iPhone!");
                 return;
             }
-            showToast("Safari sẽ hỏi \"Cho phép\" ➔ vào Cài đặt để cài trong 8 phút.");
+            showToast("Safari sẽ hỏi \"Cho phép\" ➔ vào Cài đặt để cài.");
         }
 
         function installDNSProfile() {
